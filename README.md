@@ -1,15 +1,14 @@
 # 이예빈 · Data Engineer
 
-## 📄 Documents
-- [이력서 보기](링크)
-- [포트폴리오 보기](링크)
+데이터 엔지니어링을 공부하고 있는 이예빈의 포트폴리오 페이지입니다.
 
-## 🔧 Projects
-| 프로젝트 | 설명 | 링크 |
-|---|---|---|
-| Wikistreams | 실시간 데이터 파이프라인 | GitHub 링크 |
-| 채용봇 | ETL + PostgreSQL 최적화 | GitHub 링크 |
+## 📄 Documents
+- [이력서](resume.pdf)
+- [포트폴리오](portfolio.pdf)
+
+## 🌐 GitHub Pages
+- https://binnini.github.io/portfolio
 
 ## 📬 Contact
-- Email: puding2564@gmaill.com
-- GitHub: github.com/binnini
+- Email: puding2564@gmail.com
+- GitHub: [github.com/binnini](https://github.com/binnini)
