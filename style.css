@@ -222,7 +222,28 @@ img { max-width: 100%; display: block; }
 .check-list { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
 .check-list li { position: relative; padding-left: 24px; color: #dce2ee; }
 .check-list li::before { content: "✦"; position: absolute; left: 0; color: var(--accent-2); }
-.next-box { background: rgba(255,207,90,0.08); border-radius: var(--radius-md); padding: 20px !important; border: 1px solid rgba(255,207,90,0.18) !important; }
+.ai-tool-grid {
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 8px;
+}
+.ai-tool-grid li {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: rgba(255,255,255,0.04);
+}
+.ai-tool-task { color: var(--muted-2); font-size: 0.82rem; }
+.ai-tool-name { color: var(--text-strong); font-weight: 800; font-size: 0.94rem; letter-spacing: -0.02em; }
+@media (max-width: 560px) {
+  .ai-tool-grid { grid-template-columns: 1fr; }
+}
 
 .game-case {
   display: grid;
@@ -555,7 +576,6 @@ p, li, dd { line-height: 1.72; }
   font-size: 0.98rem;
 }
 .check-list { gap: 9px; }
-.next-box h3 { color: var(--text-strong); }
 
 .game-case {
   gap: 30px;
@@ -739,9 +759,6 @@ body {
 .photo-strip button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
 .photo-strip img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
 .feature-copy section + section { margin-top: 22px; padding-top: 20px; }
-.next-box {
-  background: linear-gradient(180deg, rgba(255,207,90,0.13), rgba(255,207,90,0.07));
-}
 
 #games { padding-top: 76px; }
 .game-case {
