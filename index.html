@@ -1,14 +1,333 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <title>이예빈 · Data Engineer</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="이예빈 게임 클라이언트 개발자 포트폴리오 — Unity 기반 게임 구현과 AI Native 제작 파이프라인" />
+  <title>이예빈 | Game Client Developer Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>이예빈 · Data Engineer</h1>
-  <ul>
-    <li><a href="resume.pdf">이력서 보기</a></li>
-    <li><a href="portfolio.pdf">포트폴리오 보기</a></li>
-  </ul>
+  <header class="site-header" id="top">
+    <nav class="nav" aria-label="주요 내비게이션">
+      <a class="brand" href="#top" aria-label="맨 위로 이동">Yebin Lee · Game Portfolio</a>
+      <button class="nav-toggle" type="button" aria-label="메뉴 열기" aria-expanded="false">☰</button>
+      <div class="nav-links">
+        <a href="#why">Positioning</a>
+        <a href="#memorystone">기억결</a>
+        <a href="#games">Game Projects</a>
+        <a href="#workstyle">How I Work</a>
+        <a href="#resume">Resume</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+
+    <section class="hero section-shell">
+      <div class="hero-copy reveal">
+        <p class="eyebrow">Game Client Developer · AI Native Pipeline</p>
+        <h1>작은 규칙을 쌓아<br />플레이 감각을 만듭니다.</h1>
+        <p class="hero-lead">
+          Unity와 C#로 전투, UI, 멀티플레이, 데이터 흐름을 구현해왔습니다.
+          최근에는 대표 프로젝트 <strong>기억결</strong>을 통해 카드 선택, 제한 시야, 턴제 전술이
+          하나의 플레이 리듬으로 이어지는 과정을 실험하고 있습니다.
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href="#memorystone">대표 프로젝트 보기</a>
+          <a class="button ghost" href="#games">이전 게임 제작 경험</a>
+        </div>
+      </div>
+      <div class="hero-card reveal">
+        <img src="assets/gamelab/memorystone/로비.png" alt="기억결 로비 화면" />
+        <div class="hero-card-body">
+          <a class="pill" href="#memorystone">Main Project</a>
+          <h2>기억결 / MemoryStone</h2>
+          <p>서울의 랜드마크와 전통 요괴를 배경으로 만든 턴제 덱빌딩 전술 프로토타입입니다.</p>
+        </div>
+      </div>
+    </section>
+  </header>
+
+  <main>
+    <section class="section-shell intro-grid" id="why">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Positioning</p>
+        <h2>클라이언트 구현을 중심에 두고, 제작 반복을 가볍게 만듭니다.</h2>
+      </div>
+      <div class="why-panel reveal">
+        <p>
+          여러 팀 프로젝트를 만들고 시연하며, 좋은 아이디어는 결국 조작감, 전투 흐름, UI 피드백,
+          데이터 구조 안에서 플레이어에게 전달된다는 것을 배웠습니다.
+        </p>
+        <p>
+          이 포트폴리오는 그 구현 경험을 바탕으로, AI를 활용해 프로토타입과 검증 사이의 간격을 줄이려는
+          최근의 제작 방향을 함께 정리했습니다.
+        </p>
+      </div>
+      <div class="value-cards reveal">
+        <article>
+          <strong>01</strong>
+          <h3>클라이언트 구현</h3>
+          <p>전투, 이동, UI, 상태 관리, 데이터 구조처럼 플레이 경험을 움직이는 부분에 집중합니다.</p>
+        </article>
+        <article>
+          <strong>02</strong>
+          <h3>플레이 가능한 검증</h3>
+          <p>Unity/C#로 빌드를 만들고, 조작감과 규칙이 자연스럽게 이어지는지 확인합니다.</p>
+        </article>
+        <article>
+          <strong>03</strong>
+          <h3>AI Native 파이프라인</h3>
+          <p>기획 정리, 에셋 탐색, 구현 보조, 문서화와 테스트를 하나의 제작 흐름으로 연결해봅니다.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="project-feature" id="memorystone">
+      <div class="section-shell">
+        <div class="project-kicker reveal">Project 01 · 대표 프로젝트</div>
+        <div class="project-title-row reveal">
+          <div>
+            <h2>기억결 / MemoryStone</h2>
+            <p>전통 요괴가 나타난 서울을 탐험하는 로그라이크 덱빌딩 전술 프로토타입</p>
+          </div>
+          <div class="meta-stack">
+            <span>Unity</span>
+            <span>Turn-based Strategy</span>
+            <span>Deckbuilding</span>
+            <span>AI-assisted Production</span>
+          </div>
+        </div>
+
+        <div class="feature-layout">
+          <div class="feature-media reveal">
+            <img class="main-shot" src="assets/gamelab/memorystone/플레이 화면.png" alt="기억결 플레이 화면" />
+            <div class="thumb-row" data-gallery="memorystone">
+              <button type="button" data-src="assets/gamelab/memorystone/로비.png"><img src="assets/gamelab/memorystone/로비.png" alt="기억결 로비 화면" /></button>
+              <button type="button" data-src="assets/gamelab/memorystone/플레이 화면.png"><img src="assets/gamelab/memorystone/플레이 화면.png" alt="기억결 전투 화면" /></button>
+              <button type="button" data-src="assets/gamelab/memorystone/필드 카드.png"><img src="assets/gamelab/memorystone/필드 카드.png" alt="기억결 필드 카드 사용 화면" /></button>
+              <button type="button" data-src="assets/gamelab/memorystone/정찰 카드.png"><img src="assets/gamelab/memorystone/정찰 카드.png" alt="기억결 정찰 카드 화면" /></button>
+              <button type="button" data-src="assets/gamelab/memorystone/카드 보상 2.png"><img src="assets/gamelab/memorystone/카드 보상 2.png" alt="기억결 카드 보상 화면" /></button>
+            </div>
+            <div class="photo-strip" aria-label="기억결 추가 플레이 이미지">
+              <button type="button" data-src="assets/gamelab/memorystone/석촌호수.png"><img src="assets/gamelab/memorystone/석촌호수.png" alt="석촌호수 맵" /></button>
+              <button type="button" data-src="assets/gamelab/memorystone/몬스터 행동 의도.png"><img src="assets/gamelab/memorystone/몬스터 행동 의도.png" alt="몬스터 행동 의도 표시" /></button>
+              <button type="button" data-src="assets/gamelab/memorystone/플레이어 공격.png"><img src="assets/gamelab/memorystone/플레이어 공격.png" alt="플레이어 공격 장면" /></button>
+            </div>
+          </div>
+
+          <div class="feature-copy reveal">
+            <section>
+              <h3>만들고 싶었던 재미</h3>
+              <p>
+                제한된 시야 안에서 정찰 카드로 정보를 얻고, 이동·공격·방어 카드를 어떤 순서로 쓸지 고르는 게임입니다.
+                서울의 공간감과 전통 요괴의 이미지를 더해, 익숙한 장소를 낯설게 탐험하는 분위기를 만들었습니다.
+              </p>
+            </section>
+            <section>
+              <h3>구현한 시스템</h3>
+              <ul class="check-list">
+                <li>육각 타일 맵 기반 이동과 전술 포지셔닝</li>
+                <li>이동/공격/방어/정찰/필드 카드 기반 행동 구조</li>
+                <li>제한 시야, 정찰, 함정·보물 오브젝트 탐험</li>
+                <li>요괴 AI와 공격 패턴, 상태이상과 버프</li>
+                <li>카드/덱 UI, 인게임 HUD, 튜토리얼 UX 설계</li>
+              </ul>
+            </section>
+            <section>
+              <h3>AI 활용 방식</h3>
+              <p>
+                VARCO 3D/Sounds, 생성형 이미지 도구, Claude, Codex, Unity MCP를 활용했습니다.
+                AI는 결과를 대신 만드는 도구라기보다, 시안 탐색과 구현 반복을 빠르게 확인하기 위한 보조 흐름으로 사용했습니다.
+              </p>
+            </section>
+            <section class="next-box">
+              <h3>다음에 다듬고 싶은 것</h3>
+              <p>
+                카드 조합의 리듬, 제한 시야가 만드는 긴장감, 요괴 패턴의 차이를 플레이테스트로 더 다듬고 싶습니다.
+              </p>
+            </section>
+            <div class="link-row project-links">
+              <a class="text-link" href="https://docs.google.com/document/d/14k6uT8l9-s1CfIYpVu6EEJMHSt-CBt2AIw-J3HjE4P0/edit?usp=drive_link" target="_blank" rel="noopener noreferrer">설명 문서 보기 →</a>
+              <a class="text-link" href="https://drive.google.com/file/d/19yWwFY2vf_tAeU0CQQH0-F10ruQjRH8r/view?usp=sharing" target="_blank" rel="noopener noreferrer">빌드 파일 보기 →</a>
+              <a class="text-link" href="https://youtu.be/Yi2yNJYkGH8?si=bllBOsjQL-OufYMb" target="_blank" rel="noopener noreferrer">시연 영상 보기 →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-shell" id="games">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Game Development Foundation</p>
+        <h2>이전 게임 제작 경험</h2>
+        <p>이전 프로젝트는 핵심 경험만 간단히 남겼습니다. 현재의 초점은 기억결입니다.</p>
+      </div>
+
+      <article class="game-case reveal">
+        <div class="case-gallery">
+          <button type="button" data-src="assets/gamelab/seolhwa/1.png"><img src="assets/gamelab/seolhwa/1.png" alt="설화 게임 스크린샷 1" /></button>
+          <button type="button" data-src="assets/gamelab/seolhwa/3.png"><img src="assets/gamelab/seolhwa/3.png" alt="설화 게임 스크린샷 2" /></button>
+          <button type="button" data-src="assets/gamelab/seolhwa/7.png"><img src="assets/gamelab/seolhwa/7.png" alt="설화 게임 스크린샷 3" /></button>
+        </div>
+        <div class="case-copy">
+          <p class="project-kicker">Project 02 · 개발 전담 · 4인 팀</p>
+          <h3>설화</h3>
+          <p class="case-summary">조선시대 배경의 턴제 횡스크롤 로그라이크</p>
+          <dl class="role-list">
+            <div><dt>기간</dt><dd>2022.04 ~ 2022.12</dd></div>
+            <div><dt>역할</dt><dd>개발 전담, Unity/C# 구현</dd></div>
+            <div><dt>결과</dt><dd>소학회 내 시연, 약 20명 플레이</dd></div>
+          </dl>
+          <h4>핵심 구현</h4>
+          <ul class="check-list compact-list">
+            <li>턴제 전투와 던전 진행 구조 구현</li>
+            <li>JSON 기반 캐릭터·스토리 데이터 관리</li>
+            <li>Observer / Factory 패턴 리팩토링</li>
+          </ul>
+          <p class="case-note">장기 협업 속에서 요구사항을 정리하고, 데이터와 폴리싱의 중요성을 배웠습니다.</p>
+          <div class="link-row project-links">
+            <a class="text-link" href="https://drive.google.com/file/d/1aGICqy74RCyqn6q2tgN9ixZIZ6J6r6B5/view?usp=drive_link" target="_blank" rel="noopener noreferrer">빌드 파일 보기 →</a>
+            <a class="text-link" href="https://youtu.be/swJEf2gjw50" target="_blank" rel="noopener noreferrer">시연 영상 보기 →</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="game-case reverse reveal">
+        <div class="case-gallery">
+          <button type="button" data-src="assets/gamelab/rainbow/1.jpg"><img src="assets/gamelab/rainbow/1.jpg" alt="Rainbow War 게임 스크린샷 1" /></button>
+          <button type="button" data-src="assets/gamelab/rainbow/4.png"><img src="assets/gamelab/rainbow/4.png" alt="Rainbow War 게임 스크린샷 2" /></button>
+          <button type="button" data-src="assets/gamelab/rainbow/6.png"><img src="assets/gamelab/rainbow/6.png" alt="Rainbow War 게임 스크린샷 3" /></button>
+        </div>
+        <div class="case-copy">
+          <p class="project-kicker">Project 03 · 개발 리더 · 7인 팀</p>
+          <h3>Rainbow War</h3>
+          <p class="case-summary">땅따먹기 규칙을 결합한 멀티플레이 TPS</p>
+          <dl class="role-list">
+            <div><dt>기간</dt><dd>2021.04 ~ 2022.04</dd></div>
+            <div><dt>역할</dt><dd>개발 리더, 멀티플레이/게임플레이 구현</dd></div>
+            <div><dt>결과</dt><dd>아주대 벚꽃 축제 시연, 약 30명 플레이</dd></div>
+          </dl>
+          <h4>핵심 구현</h4>
+          <ul class="check-list compact-list">
+            <li>Photon RPC 기반 멀티플레이 구조 구현</li>
+            <li>점수·체력·영역·이동 상태 동기화</li>
+            <li>땅따먹기 영역 생성 알고리즘 구현</li>
+          </ul>
+          <p class="case-note">처음 팀을 이끌며 네트워크 예외 처리와 플레이 검증의 무게를 배웠습니다.</p>
+          <div class="link-row project-links">
+            <a class="text-link" href="https://drive.google.com/file/d/1aGICqy74RCyqn6q2tgN9ixZIZ6J6r6B5/view?usp=drive_link" target="_blank" rel="noopener noreferrer">빌드 파일 보기 →</a>
+            <a class="text-link" href="https://github.com/binnini/Rainbow-War.git" target="_blank" rel="noopener noreferrer">GitHub 보기 →</a>
+            <a class="text-link" href="https://youtu.be/l2qebtkdKGU" target="_blank" rel="noopener noreferrer">시연 영상 보기 →</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="game-case reveal">
+        <div class="case-gallery">
+          <button type="button" data-src="assets/gamelab/matchmist/메인 화면.png"><img src="assets/gamelab/matchmist/메인 화면.png" alt="Match & Mist 메인 화면" /></button>
+          <button type="button" data-src="assets/gamelab/matchmist/플레이 화면 1.png"><img src="assets/gamelab/matchmist/플레이 화면 1.png" alt="Match & Mist 플레이 화면 1" /></button>
+          <button type="button" data-src="assets/gamelab/matchmist/플레이 화면 2.png"><img src="assets/gamelab/matchmist/플레이 화면 2.png" alt="Match & Mist 플레이 화면 2" /></button>
+        </div>
+        <div class="case-copy">
+          <p class="project-kicker">Project 04 · Global Game Jam 2022 · 개발 참여</p>
+          <h3>Match &amp; Mist</h3>
+          <p class="case-summary">성냥, 안개, 좀비를 활용한 제한 시야 프로토타입</p>
+          <dl class="role-list">
+            <div><dt>기간</dt><dd>2022 Global Game Jam · 3일</dd></div>
+            <div><dt>역할</dt><dd>개발 참여, 프로토타입 구현</dd></div>
+            <div><dt>결과</dt><dd>게임잼 기간 안에 완성 후 제출</dd></div>
+          </dl>
+          <h4>핵심 구현</h4>
+          <ul class="check-list compact-list">
+            <li>도망과 추격이 전환되는 아이템 구조</li>
+            <li>성냥 빛과 안개를 활용한 제한 시야</li>
+            <li>3일 안에 확인 가능한 플레이 빌드 제작</li>
+          </ul>
+          <p class="case-note">짧은 일정에서는 시스템 수보다 핵심 전환 경험을 먼저 세워야 한다는 점을 배웠습니다.</p>
+          <div class="link-row project-links">
+            <a class="text-link" href="https://drive.google.com/file/d/1lYHBMOj58NRAX9bEGxHFUPoa0BPMROM0/view?usp=drive_link" target="_blank" rel="noopener noreferrer">기획안 보기 →</a>
+            <a class="text-link" href="https://drive.google.com/file/d/1uNu34taDjbGb2viA91djoFBVnUYSZnpW/view?usp=drive_link" target="_blank" rel="noopener noreferrer">빌드 파일 보기 →</a>
+            <a class="text-link" href="https://drive.google.com/file/d/1KJnJBR-uRtsTnqoGDMHG4DVeFqSOp1h-/view?usp=drive_link" target="_blank" rel="noopener noreferrer">시연 영상 보기 →</a>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="section-shell workstyle" id="workstyle">
+      <div class="section-heading reveal">
+        <p class="eyebrow">How I Work</p>
+        <h2>구현은 단단하게, 반복은 가볍게 가져가려 합니다.</h2>
+      </div>
+      <div class="work-grid reveal">
+        <article>
+          <h3>클라이언트 중심 구현</h3>
+          <p>전투, 이동, 카메라, UI처럼 플레이어가 바로 느끼는 시스템을 먼저 세웁니다.</p>
+        </article>
+        <article>
+          <h3>데이터화와 유지보수</h3>
+          <p>카드, 맵, 캐릭터처럼 자주 바뀌는 요소는 데이터와 로직을 나누어 다룹니다.</p>
+        </article>
+        <article>
+          <h3>AI Native 제작 흐름</h3>
+          <p>AI는 기획 정리, 시안 탐색, 코드 보조, 테스트와 문서화를 빠르게 잇는 도구로 사용합니다.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section-shell resume-summary" id="resume">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Resume Snapshot</p>
+        <h2>이력서 핵심 요약</h2>
+        <p>포트폴리오 하단에서 빠르게 확인할 수 있도록 학력, 경력, 활동, 자격 사항만 간단히 정리했습니다.</p>
+      </div>
+      <div class="resume-grid reveal">
+        <article>
+          <h3>Education</h3>
+          <p><strong>아주대학교 소프트웨어학과</strong></p>
+          <p>2020.03 ~ 2026.02 졸업</p>
+          <p>GPA 4.06 / 4.5 · Major GPA 3.98 / 4.5</p>
+        </article>
+        <article>
+          <h3>Career</h3>
+          <p><strong>(주) 베스텔라랩 / 인턴</strong></p>
+          <p>2025.09 ~ 2025.12 · 영상 분석 AI 부서</p>
+          <p>LPR 번호판 인식 모듈 개발, 모델 파인튜닝 및 ONNX 최적화 경험</p>
+        </article>
+        <article>
+          <h3>Activities</h3>
+          <p>교내 게임 개발 소학회 TML · 설화 개발 전담</p>
+          <p>교내 게임 개발 소학회 브레인스톰 · Rainbow War 개발 리더</p>
+        </article>
+        <article>
+          <h3>Certification</h3>
+          <p>정보처리기사 · 2025.09.12</p>
+          <p>ADsP 데이터분석준전문가 · 2025.06.13</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="closing" id="contact">
+      <div class="section-shell closing-inner reveal">
+        <p class="eyebrow">Closing</p>
+        <h2>플레이가 자연스럽게 이어지는 순간을<br />차분히 구현해가고 싶습니다.</h2>
+        <p>
+          기억결을 중심으로 클라이언트 구현 역량을 더 단단히 다지고,
+          AI를 활용한 제작 흐름도 함께 실험해보려 합니다.
+        </p>
+        <div class="contact-links">
+          <a href="mailto:puding2564@gmail.com">puding2564@gmail.com</a>
+          <a href="https://github.com/binnini" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="resume.pdf" target="_blank" rel="noopener noreferrer">기존 이력서 PDF</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="lightbox" role="dialog" aria-modal="true" aria-label="프로젝트 이미지 확대 보기" hidden>
+    <button type="button" class="lightbox-close" aria-label="이미지 닫기">×</button>
+    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="확대 이미지" />
+  </div>
+
+  <script src="main.js"></script>
 </body>
 </html>
