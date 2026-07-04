@@ -419,7 +419,7 @@ img { max-width: 100%; display: block; }
   --tracking-tight: -0.045em;
 }
 
-html { font-size: 15px; }
+html { font-size: 14px; }
 body {
   font-family: var(--font-sans);
   font-size: 1rem;
@@ -470,15 +470,15 @@ p, li, dd { line-height: 1.72; }
   text-wrap: balance;
 }
 .hero h1 {
-  font-size: clamp(2.6rem, 5.2vw, 4.4rem);
-  max-width: 780px;
+  font-size: clamp(2.2rem, 4.4vw, 3.4rem);
+  max-width: 720px;
 }
 .hero-lead {
   max-width: 720px;
   margin-top: 24px;
   color: var(--muted-2);
-  font-size: clamp(1.04rem, 1.25vw, 1.18rem);
-  line-height: 1.82;
+  font-size: clamp(0.96rem, 1vw, 1.06rem);
+  line-height: 1.78;
 }
 .button {
   min-height: 46px;
@@ -499,17 +499,17 @@ p, li, dd { line-height: 1.72; }
   line-height: 1.68;
 }
 
-.intro-grid { padding: 60px 0 68px; }
+.intro-grid { padding: 46px 0 52px; }
 .section-heading { margin-bottom: 28px; }
 .section-heading h2 {
   max-width: 900px;
-  font-size: clamp(1.9rem, 3.2vw, 2.9rem);
+  font-size: clamp(1.65rem, 2.7vw, 2.35rem);
 }
 .section-heading p {
   max-width: 780px;
   color: var(--muted-2);
-  font-size: 1.02rem;
-  line-height: 1.75;
+  font-size: 0.95rem;
+  line-height: 1.7;
 }
 .why-panel {
   padding: clamp(24px, 3vw, 36px);
@@ -542,14 +542,14 @@ p, li, dd { line-height: 1.72; }
   font-size: 0.97rem;
 }
 
-.project-feature { padding: 70px 0; }
+.project-feature { padding: 52px 0; }
 .project-kicker {
   font-size: 0.74rem;
   letter-spacing: 0.14em;
 }
 .project-title-row { margin: 12px 0 32px; }
 .project-title-row h2 {
-  font-size: clamp(2.2rem, 4.2vw, 3.7rem);
+  font-size: clamp(1.85rem, 3.4vw, 2.9rem);
 }
 .project-title-row p {
   max-width: 720px;
@@ -630,7 +630,7 @@ p, li, dd { line-height: 1.72; }
   text-wrap: pretty;
 }
 .resume-grid strong { color: var(--text); }
-.closing { padding: 70px 0 84px; }
+.closing { padding: 52px 0 64px; }
 .closing-inner { padding: clamp(32px, 5vw, 56px); }
 .closing h2 {
   font-size: clamp(2rem, 3.8vw, 3.55rem);
@@ -642,7 +642,7 @@ p, li, dd { line-height: 1.72; }
 }
 
 @media (max-width: 900px) {
-  html { font-size: 14.5px; }
+  html { font-size: 13.5px; }
   .hero { min-height: auto; padding-top: 54px; }
   .hero h1 { font-size: clamp(2.75rem, 11vw, 4.4rem); }
   .nav-links { font-size: 0.95rem; }
@@ -650,7 +650,7 @@ p, li, dd { line-height: 1.72; }
 }
 
 @media (max-width: 560px) {
-  html { font-size: 14px; }
+  html { font-size: 13px; }
   body { line-height: 1.68; }
   .hero h1 {
     font-size: clamp(2.42rem, 13vw, 3.25rem);
@@ -762,7 +762,7 @@ body {
 .photo-strip img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
 .feature-copy section + section { margin-top: 22px; padding-top: 20px; }
 
-#games { padding-top: 56px; }
+#games { padding-top: 42px; }
 .game-case {
   grid-template-columns: 0.78fr 1fr;
   margin: 24px 0 38px;
