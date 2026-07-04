@@ -41,12 +41,29 @@ function openLightbox(src, alt) {
   closeButton.focus();
 }
 
-document.querySelectorAll('.thumb-row button, .photo-strip button, .case-gallery button').forEach((button) => {
+document.querySelectorAll('.thumb-row button, .photo-strip button, .case-gallery button, .cs-hero button, .case-hero').forEach((button) => {
   button.addEventListener('click', () => {
     const image = button.querySelector('img');
     const src = button.dataset?.src || image?.getAttribute('src');
     const alt = image?.getAttribute('alt') || '확대 이미지';
     openLightbox(src, alt);
+  });
+});
+
+// Expanded project cards: clicking a thumbnail swaps it into the hero image area
+document.querySelectorAll('.game-case.expanded').forEach((card) => {
+  const hero = card.querySelector('.case-hero');
+  const heroImg = hero?.querySelector('img');
+  if (!hero || !heroImg) return;
+  card.querySelectorAll('.case-thumbs button').forEach((button) => {
+    button.addEventListener('click', () => {
+      const image = button.querySelector('img');
+      const src = button.dataset?.src || image?.getAttribute('src');
+      if (!src) return;
+      heroImg.src = src;
+      heroImg.alt = image?.getAttribute('alt') || heroImg.alt;
+      hero.dataset.src = src;
+    });
   });
 });
 
