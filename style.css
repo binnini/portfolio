@@ -15,7 +15,7 @@
   --radius-xl: 30px;
   --radius-lg: 22px;
   --radius-md: 16px;
-  --max: 1180px;
+  --max: 1000px;
 }
 
 * { box-sizing: border-box; }
