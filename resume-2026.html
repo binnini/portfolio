@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>이예빈 · 이력서</title>
+<style>
+@page { size: A4; margin: 0; }
+
+:root{
+  --ink:#1a1a1a; --ink-2:#4a4a4a; --ink-3:#7d7d7d;
+  --line:#e2e2e2; --line-2:#c9c9c9;
+  --accent:#B4700C; --accent-bg:#FDF6E7; --code-bg:#f6f6f4;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; background:#8a8a8a; }
+body{
+  font-family:"Pretendard","Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",system-ui,sans-serif;
+  color:var(--ink); font-size:8.8pt; line-height:1.48; -webkit-font-smoothing:antialiased;
+}
+.page{
+  position:relative; width:210mm; height:297mm; padding:12mm 14mm 10mm;
+  margin:0 auto; background:#fff; overflow:hidden;
+}
+@media print{ html,body{ background:#fff; } .page{ margin:0; } }
+@media screen{ .page{ box-shadow:0 2px 14px rgba(0,0,0,.28); } }
+
+h1,h2,h3{ margin:0; font-weight:700; letter-spacing:-.01em; }
+p{ margin:0 0 4px; } p:last-child{ margin-bottom:0; }
+ul{ margin:0; padding-left:14px; }
+li{ margin-bottom:1.5px; } li:last-child{ margin-bottom:0; }
+li::marker{ color:var(--line-2); }
+code{
+  font-family:"SFMono-Regular",Menlo,Consolas,monospace; font-size:8.2pt;
+  background:var(--code-bg); padding:.5px 3px; border-radius:2px;
+}
+b{ font-weight:700; }
+
+/* 헤더 */
+.head{ display:flex; align-items:flex-end; gap:14px; padding-bottom:7px;
+  border-bottom:2px solid var(--ink); }
+.head-name{ font-size:22pt; font-weight:800; line-height:1; letter-spacing:-.02em; }
+.head-role{ font-size:10pt; color:var(--accent); font-weight:700; margin-bottom:2px; }
+.head-contact{ margin-left:auto; text-align:right; font-size:8.6pt; color:var(--ink-2); line-height:1.65; }
+
+/* 섹션 */
+.sec{ margin-top:8px; }
+.sec-title{
+  font-size:8.4pt; font-weight:800; letter-spacing:.13em; color:var(--accent);
+  padding-bottom:2.5px; margin-bottom:5px; border-bottom:1px solid var(--line);
+}
+
+.claim{ font-size:10pt; font-weight:700; line-height:1.5; margin-bottom:5px; }
+.claim span{ color:var(--accent); }
+.intro{ font-size:8.8pt; color:var(--ink-2); }
+
+/* 스킬 */
+.skills{ display:grid; grid-template-columns:58px 1fr; gap:2px 9px; font-size:8.6pt; }
+.skills dt{ color:var(--ink-3); font-size:8.4pt; padding-top:.5px; }
+.skills dd{ margin:0; }
+
+/* 경력/프로젝트 항목 */
+.item{ margin-bottom:6px; }
+.item:last-child{ margin-bottom:0; }
+.item-head{ display:flex; align-items:baseline; gap:7px; }
+.item-name{ font-size:9.8pt; font-weight:700; }
+.item-role{ font-size:8.3pt; color:var(--accent); font-weight:700; }
+.item-when{ margin-left:auto; font-size:8.3pt; color:var(--ink-3); white-space:nowrap; }
+.item-sum{ font-size:8.5pt; color:var(--ink-2); margin:1px 0 2.5px; }
+.item ul{ font-size:8.6pt; }
+
+.metrics{
+  display:inline-block; margin-top:3px; padding:3px 8px;
+  background:var(--accent-bg); border-radius:3px; font-size:8.6pt;
+}
+.metrics b{ color:var(--accent); }
+
+/* 2단 */
+.two{ display:grid; grid-template-columns:1fr 1fr; gap:6px 18px; }
+.three{ display:grid; grid-template-columns:1.06fr 0.8fr 1.14fr; gap:4px 11px; }
+.kv{ display:grid; grid-template-columns:auto 1fr; gap:1.5px 9px; font-size:8.6pt; }
+.kv dt{ color:var(--ink-3); font-size:8.4pt; white-space:nowrap; }
+.kv dd{ margin:0; }
+
+.foot{
+  position:absolute; left:15mm; right:15mm; bottom:4mm;
+  padding-top:4px; border-top:1px solid var(--line);
+  font-size:8pt; color:var(--ink-3); display:flex; justify-content:space-between;
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="head">
+    <div>
+      <div class="head-role">Unity Client Programmer</div>
+      <h1 class="head-name">이예빈</h1>
+    </div>
+    <div class="head-contact">
+      puding2564@gmail.com · 010-9473-7840<br>
+      github.com/binnini · binnini.github.io/portfolio
+    </div>
+  </div>
+
+  <div class="sec">
+    <p class="claim">게임 규칙을 <span>엔진에서 떼어내고</span>, 성능은 <span>추측이 아니라 계측</span>으로 다룹니다.</p>
+    <p class="intro">
+      Unity로 네 편의 게임을 만들어 게임잼·전시회·공모전에 내놓았고, 현재는 턴제 덱빌딩 로그라이크
+      <b>기억결(MemoryStone)</b>의 클라이언트를 전담 개발하고 있습니다. 전투·맵·카드 규칙을 UnityEngine
+      비의존 어셈블리로 분리해 씬 없이 검증되게 만들었고, Profiler로 병목을 특정해 턴당 프레임 비용과
+      씬 로드 시간을 각각 10배·31배 줄였습니다.
+    </p>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">SKILLS</div>
+    <div class="two">
+      <div>
+        <dl class="skills">
+          <dt>Language</dt><dd>C# · HLSL · Python</dd>
+          <dt>Engine</dt><dd>Unity 6 (6000.3) · URP · Input System · Cinemachine · Timeline</dd>
+          <dt>설계</dt><dd>Assembly Definition 계층 분리 · 의존성 역전 · 상태 머신 · 데이터 주도 설계</dd>
+        </dl>
+      </div>
+      <div>
+        <dl class="skills">
+          <dt>성능</dt><dd>Unity Profiler · ProfilerMarker/Recorder · Frame Debugger · 배칭·드로우콜 예산</dd>
+          <dt>품질</dt><dd>EditMode/PlayMode 자동화 테스트 · 골든 베이스라인 회귀 게이트</dd>
+          <dt>협업</dt><dd>UVCS(Plastic SCM) · Git · AI 코딩 도구(Claude Code, Codex, Unity MCP)</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">PROJECTS</div>
+
+    <div class="item">
+      <div class="item-head">
+        <span class="item-name">기억결 / MemoryStone</span>
+        <span class="item-role">팀 리더 · 개발 전담 (3인)</span>
+        <span class="item-when">2026.06 ~ 진행 중</span>
+      </div>
+      <p class="item-sum">
+        육각 타일 턴제 덱빌딩 로그라이크. 게임 로직 전체와 Unity 클라이언트를 구현. C# 509파일 · 약 15만 줄.
+        서울 플레이업 AI 게임 챌린지 <b>상위 8팀 선정</b>, 2026 GES 전시·발표 예정.
+      </p>
+      <ul>
+        <li><b>엔진 비의존 코어 분리</b> — 전투·맵·카드 규칙을 <code>noEngineReferences</code> 어셈블리 3종으로
+            떼어내고 의존 방향을 표현→런타임 단방향으로 고정. 순환은 인터페이스·델리게이트 인버전과
+            공유 계약 어셈블리로 차단. <b>씬 없이 도는 EditMode 검증 체계</b>를 확보(925 pass / 0 fail).</li>
+        <li><b>계측 기반 최적화</b> — 드로우콜이 아닌 CPU 바운드임을 먼저 판별한 뒤 <code>ProfilerMarker</code>를
+            계층으로 심어 병목을 특정. 더티 플래그 증분 갱신·입력 해시 캐시·사전계산 LUT로 처리했고,
+            타일 클릭 콜라이더 139,146개는 좌표 변환으로 대체해 씬에서 제거 후 회귀 게이트로 재발 차단.</li>
+        <li><b>암시야 설계</b> — 안개를 렌더링이 아닌 <b>정보 은닉 계층</b>으로 설계. 렌더러가 원본 셀 데이터를
+            받지 못하고 단계별로 걸러진 뷰만 받게 해, UI·툴팁 어느 표면도 필터를 우회할 수 없게 함.</li>
+        <li><b>God Object 분해</b> — 10,690줄 단일 클래스를 seam 인터페이스 기준으로 단계 분해.
+            테스트 베이스라인이 117개 실패 상태였기에 게이트를 <b>“신규 실패 0”</b>으로 정의해 전진했고,
+            완료 시점에 베이스라인이 초록으로 전환됨.</li>
+        <li>암시야·전투 오버레이·UI 등 <b>셰이더 11종 직접 작성</b>. 카드·몬스터·상태이상을 CSV로 저작하고
+            에디터 임포터로 ScriptableObject를 생성하는 데이터 파이프라인 구축.</li>
+      </ul>
+      <div class="metrics">
+        시야 갱신 <b>59 → 5.8 ms</b>/turn · 오버레이 <b>10.4 → 2.1 ms</b>/move ·
+        조명 마스크 <b>1.97 → 0.18 ms</b>/frame · 씬 로드 <b>17.5 → 0.56초</b>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="item-head">
+        <span class="item-name">Rainbow War</span>
+        <span class="item-role">개발 리더 (7인)</span>
+        <span class="item-when">2021.04 ~ 2022.04</span>
+      </div>
+      <p class="item-sum">실시간 멀티플레이 영역 점령 TPS. 아주대 교내 동아리 시연회 출품.</p>
+      <ul>
+        <li>Photon RPC 기반 이동·사격·영역 갱신 동기화. 클라이언트마다 영역 계산이 어긋나는 문제를
+            <b>Master-Slave 구조</b>로 정리해 판정 기준을 한 곳으로 수렴</li>
+        <li>임의 다각형 영역을 <b>Ear Clipping 삼각분할</b>로 메시화</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <div class="item-head">
+        <span class="item-name">설화</span>
+        <span class="item-role">개발 전담 (4인)</span>
+        <span class="item-when">2022.04 ~ 2022.12</span>
+      </div>
+      <p class="item-sum">조선 배경 횡스크롤 턴제 로그라이크. 소학회 내 시연.</p>
+      <ul>
+        <li>속도 순으로 턴이 도는 파티 단위 턴제 전투, 캐릭터별 고유 기술과 상태이상 구현.
+            전투 이벤트 전파에 Observer, 생성에 Factory 패턴을 적용해 8개월간 늘어나는 요구사항을 감당</li>
+        <li>캐릭터·스토리·이벤트를 <b>JSON 데이터로 분리</b>해 코드 수정 없이 콘텐츠를 늘릴 수 있는 구조 확보</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <div class="item-head">
+        <span class="item-name">Match &amp; Mist</span>
+        <span class="item-role">개발 참여</span>
+        <span class="item-when">Global Game Jam 2022 · 3일</span>
+      </div>
+      <p class="item-sum">
+        제한 시야 추격 프로토타입. 이동 속도가 소음이 되고 좀비가 소음을 추적하는 규칙을 구현해
+        “빨리 가고 싶은데 그러면 들킨다”는 긴장을 만듦. 3일 안에 플레이 가능한 빌드를 완성해 제출.
+      </p>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">EXPERIENCE</div>
+    <div class="item">
+      <div class="item-head">
+        <span class="item-name">(주)베스텔라랩</span>
+        <span class="item-role">인턴 · 영상 분석 AI 부서</span>
+        <span class="item-when">2025.09 ~ 2025.12</span>
+      </div>
+      <p class="item-sum">주차장 CCTV 기반 차량 위치 안내 서비스의 번호판 인식(LPR) 모듈 담당.</p>
+      <ul>
+        <li>회전·왜곡·원근 변환 증강으로 실제 CCTV 각도 문제에 대응하며 인식 모델 파인튜닝 —
+            AI-Hub 데이터셋 기준 정확도 약 <b>97~97.9%</b></li>
+        <li>ONNX 변환 + FP16 양자화로 추론 시간 <b>2.59s → 1.18s</b>.
+            계측 → 병목 특정 → 개선 → 재측정 방식은 기억결의 성능 작업과 동일</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="three">
+      <div>
+        <div class="sec-title">EDUCATION</div>
+        <dl class="kv">
+          <dt>2020.03~2026.02</dt><dd>아주대학교 소프트웨어학과</dd>
+          <dt>학점</dt><dd>4.06 / 4.5 (전공 3.98)</dd>
+        </dl>
+      </div>
+      <div>
+        <div class="sec-title">CERTIFICATION</div>
+        <dl class="kv">
+          <dt>2025.09</dt><dd>정보처리기사</dd>
+          <dt>2025.06</dt><dd>ADsP 데이터분석준전문가</dd>
+        </dl>
+      </div>
+      <div>
+        <div class="sec-title">ACTIVITIES</div>
+        <dl class="kv">
+          <dt>2026</dt><dd>서울 플레이업 AI 챌린지 — 기억결, 상위 8팀</dd>
+          <dt>2022</dt><dd>소학회 TML — 설화 · GGJ — Match &amp; Mist</dd>
+          <dt>2021</dt><dd>소학회 브레인스톰 — Rainbow War, 개발 리더</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>이예빈 · Unity Client Programmer</span>
+    <span>포트폴리오 · binnini.github.io/portfolio/portfolio-2026.html</span>
+  </div>
+
+</div>
+</body>
+</html>

@@ -5,6 +5,7 @@
 
 ## 📄 Documents
 - **[포트폴리오 (2026)](https://binnini.github.io/portfolio/portfolio-2026.html)** · [PDF](portfolio-2026.pdf)
+- **[이력서 (2026)](https://binnini.github.io/portfolio/resume-2026.html)** · [PDF](resume-2026.pdf)
 - [게임 소개 페이지](https://binnini.github.io/portfolio/)
 
 ## 🎮 Projects
