@@ -84,6 +84,8 @@ h1,h2,h3,h4{ margin:0; font-weight:700; letter-spacing:-.01em; }
 /* 2단 본문 */
 .cols{ display:grid; grid-template-columns: 1fr 1fr; gap:11px 14px; }
 .cols-37{ display:grid; grid-template-columns: 0.86fr 1.14fr; gap:11px 14px; }
+/* 자식이 min-content로 트랙을 밀어내 페이지를 넘치는 것을 막는다 */
+.cols > *, .cols-37 > *{ min-width: 0; }
 
 .block{ margin-bottom:10px; }
 .block:last-child{ margin-bottom:0; }
@@ -115,6 +117,10 @@ pre{
 }
 pre .c{ color:#8a8a8a; }
 pre .k{ color:var(--accent); }
+
+a{ color: inherit; text-decoration: none; }
+.kv a, .cover-meta a{ color: var(--accent); font-weight:600;
+  border-bottom: 1px solid rgba(180,112,12,.35); }
 
 figure{ margin:0; }
 figure img{
@@ -251,12 +257,43 @@ a.trailer{
 .asm small{ display:block; font-weight:400; color:var(--ink-3); font-size:7.2pt; font-family:inherit; }
 .arrow{ text-align:center; color:var(--line-2); font-size:11pt; line-height:1; margin:1px 0 6px; }
 
+.case-head{ display:flex; align-items:baseline; gap:8px; margin-bottom:5px;
+  padding-bottom:3px; border-bottom:1px solid var(--line); }
+.case-num{ font-size:8pt; font-weight:700; letter-spacing:.08em; color:var(--accent); }
+.case-title{ font-size:10.5pt; font-weight:700; }
+.case-gain{ margin-left:auto; font-size:9pt; font-variant-numeric:tabular-nums; color:var(--ink-2); }
+.case-gain b{ color:var(--accent); }
+.case-body{ display:grid; grid-template-columns: 1fr 0.95fr 1.3fr; gap:0 14px; font-size:8.8pt; }
+.case-body > div{ min-width:0; }
+.case-o{ font-family:"SFMono-Regular", Menlo, Consolas, monospace; font-size:7.8pt;
+  color:var(--ink-2); background:#f1efea; padding:1.5px 7px; border-radius:9px; white-space:nowrap; }
+.case-body > div > .block-label{ margin-bottom:2px; }
+.case{ margin-bottom:11px; }
+.remeasure{ margin:0 0 11px; padding:6px 10px 6px 26px; position:relative;
+  background:var(--accent-bg); border-radius:3px; font-size:8.7pt; line-height:1.5; color:var(--ink-2); }
+.remeasure::before{ content:"▼"; position:absolute; left:10px; top:6px;
+  color:var(--accent); font-size:8pt; }
+.remeasure b{ color:var(--accent); }
+
 .thumbs{ display:grid; grid-template-columns:repeat(3,1fr); gap:6px; }
 .thumbs img{ width:100%; height:auto; border:1px solid var(--line); border-radius:3px; display:block; }
 
 .kv{ display:grid; grid-template-columns:auto 1fr; gap:2px 10px; font-size:9pt; }
 .kv dt{ color:var(--ink-3); font-size:8.5pt; white-space:nowrap; }
 .kv dd{ margin:0; }
+
+/* 여백이 남는 페이지의 세로 리듬을 키운다 */
+.airy p{ margin-bottom:9px; }
+.airy ul{ margin-bottom:9px; }
+.airy li{ margin-bottom:6px; }
+.airy .block{ margin-bottom:15px; }
+.airy .case{ margin-bottom:16px !important; }
+.airy th, .airy td{ padding:6.5px 7px; }
+.airy .lede{ margin-bottom:15px; }
+/* 남은 세로 여백을 주요 블록 사이로 고르게 분배 */
+.airy .page-inner{ justify-content: space-between; }
+.no-spread .page-inner{ justify-content: flex-start; }
+.airy .pin{ margin-top:0 !important; }
 
 .pill{
   display:inline-block; padding:1.5px 7px; border-radius:9px;
@@ -277,39 +314,28 @@ a.trailer{
     <div class="cover-line"></div>
 
     <div class="cover-claim">
-      게임 규칙을 <span>엔진에서 떼어내고</span>,<br>
-      성능은 <span>추측이 아니라 계측</span>으로 다룹니다.
+      다양한 <span>Unity 기반 게임 프로젝트</span>를 제작하는 데 익숙하고,<br>
+      게임 제작에 <span>AI를 적극적으로 활용</span>하는 데에 자신이 있습니다.
     </div>
 
     <p class="cover-sub">
-      턴제 덱빌딩 로그라이크 <b>기억결(MemoryStone)</b>의 클라이언트를 전담 개발하고 있습니다.
-      전투·맵·카드 규칙을 UnityEngine 비의존 어셈블리로 분리해 씬 없이 검증되게 만들었고,
-      Profiler로 병목을 특정해 턴 이동 프레임을 <b>56 → 18 ms</b>로,
-      씬 로드를 <b>17.5초 → 0.56초</b>로 줄였습니다.
+      <b>제1회 서울 플레이업 AI 게임 챌린지</b>에 참가해 턴제 덱빌딩 로그라이크
+      <b>기억결(MemoryStone)</b>을 개발하고 있습니다.
+      <b>상위 8팀</b>에 선정되어 <b>2026 GES 전시</b>를 앞두고 있으며,
+      <b>2027년 상반기 Steam 출시</b>를 목표로 개발을 이어가고 있습니다.
     </p>
 
-    <a class="trailer" href="https://youtu.be/D9CC7_xlRyA">
-      <img class="trailer-qr" src="assets/qr-trailer.svg" alt="기억결 트레일러 QR 코드">
-      <span>
-        <span class="trailer-label">기억결 트레일러 영상</span><br>
-        <span class="trailer-url">youtu.be/D9CC7_xlRyA</span>
-      </span>
-    </a>
-
     <dl class="cover-meta">
-      <dt>Email</dt><dd>puding2564@gmail.com</dd>
-      <dt>GitHub</dt><dd>github.com/binnini</dd>
-      <dt>Phone</dt><dd>010-9473-7840</dd>
-      <dt>Portfolio</dt><dd>binnini.github.io/portfolio</dd>
+      <dt>Email</dt><dd><a href="mailto:puding2564@gmail.com">puding2564@gmail.com</a></dd>
+      <dt>Phone</dt><dd><a href="tel:+821094737840">010-9473-7840</a></dd>
     </dl>
 
-    <div class="figs3" style="margin-top:20px">
-      <img src="assets/print/플레이 화면.jpg" alt="기억결 전투">
-      <img src="assets/print/땅따먹기 장면.jpg" alt="Rainbow War">
-      <img src="assets/print/구미호 전투 컷씬.jpg" alt="설화">
+    <div class="figs2" style="margin-top:22px; gap:12px">
+      <img src="assets/print/기억결 로비.png" alt="기억결 타이틀 화면" style="height:46mm; object-fit:cover">
+      <img src="assets/print/rainbowwar 로비.jpg" alt="Rainbow War 타이틀 화면" style="height:46mm; object-fit:cover">
     </div>
     <p style="margin-top:6px; font-size:8pt; color:var(--ink-3)">
-      기억결(2026) · Rainbow War(2022) · 설화(2022)
+      기억결 — Unity 6 · PC(2026) · Rainbow War — Unity 2020.3 · Android(2022)
     </p>
   </div>
   <div class="folio"><span>이예빈 · Unity Client Programmer</span><span>01</span></div>
@@ -317,97 +343,40 @@ a.trailer{
 
 
 <!-- ================= p2 · 요약 ================= -->
-<section class="page">
+<section class="page airy no-spread">
  <div class="page-inner">
   <div class="card-head">
-    <h2 class="card-title">Summary</h2>
-    <span class="card-tag">한 장 요약</span>
-  </div>
-
-  <div style="margin-top:12px">
-    <h3 class="h-sec" style="font-size:10pt">Skills</h3>
-    <div class="sum-grid">
-      <div>
-        <dl class="skill-row"><dt>Language</dt><dd>C# · HLSL · Python</dd></dl>
-        <dl class="skill-row"><dt>Engine</dt><dd>Unity 6 (6000.3) · URP · Input System · Cinemachine · Timeline</dd></dl>
-        <dl class="skill-row"><dt>설계</dt><dd>Assembly Definition 계층 분리 · 데이터 주도 설계 · 상태 머신 · 의존성 역전</dd></dl>
-      </div>
-      <div>
-        <dl class="skill-row"><dt>성능</dt><dd>Unity Profiler · ProfilerMarker / ProfilerRecorder · Frame Debugger · 배칭·드로우콜 예산 관리</dd></dl>
-        <dl class="skill-row"><dt>품질</dt><dd>EditMode / PlayMode 자동화 테스트 · 골든 베이스라인 회귀 게이트</dd></dl>
-        <dl class="skill-row"><dt>협업</dt><dd>UVCS(Plastic SCM) · Git · 스펙/결정 기록 · AI 코딩 도구(Claude Code, Codex, Unity MCP)</dd></dl>
-      </div>
-    </div>
+    <h2 class="card-title">목차</h2>
+    <span class="card-tag">Contents</span>
   </div>
 
   <div style="margin-top:16px">
-    <h3 class="h-sec" style="font-size:10pt">Projects</h3>
-
-    <div class="proj">
-      <div class="proj-top">
-        <span class="proj-name">기억결 / MemoryStone</span>
-        <span class="proj-role">팀 리더 · 개발 전담 (3인)</span>
-        <span class="proj-when">2026.06 ~ 진행 중</span>
-      </div>
-      <p class="proj-desc">
-        육각 타일 턴제 덱빌딩 로그라이크. 게임 로직 전체와 Unity 클라이언트를 구현.
-        UnityEngine 비의존 코어와 EditMode 테스트 925개로 씬 없이 검증되는 구조.
-        <b>제1회 서울 플레이업 AI 게임 챌린지 상위 8팀 선정, 2026 GES 전시·발표 예정.</b>
-      </p>
-    </div>
-
-    <div class="proj">
-      <div class="proj-top">
-        <span class="proj-name">Rainbow War</span>
-        <span class="proj-role">개발 리더 (7인)</span>
-        <span class="proj-when">2021.04 ~ 2022.04</span>
-      </div>
-      <p class="proj-desc">
-        실시간 멀티플레이 영역 점령 TPS. Photon 기반 상태 동기화와 Ear Clipping 삼각분할
-        영역 생성 알고리즘 담당. 아주대 교내 동아리 시연회 출품.
-      </p>
-    </div>
-
-    <div class="proj">
-      <div class="proj-top">
-        <span class="proj-name">설화</span>
-        <span class="proj-role">개발 전담 (4인)</span>
-        <span class="proj-when">2022.04 ~ 2022.12</span>
-      </div>
-      <p class="proj-desc">
-        조선 배경 횡스크롤 턴제 로그라이크. 캐릭터·스토리를 JSON 데이터로 관리해 콘텐츠 확장이
-        쉬운 구조를 만들고, Observer·Factory 패턴으로 전투 로직을 정리. 소학회 시연.
-      </p>
-    </div>
-
-    <div class="proj">
-      <div class="proj-top">
-        <span class="proj-name">Match &amp; Mist</span>
-        <span class="proj-role">개발 참여 (Global Game Jam)</span>
-        <span class="proj-when">2022 · 3일</span>
-      </div>
-      <p class="proj-desc">
-        제한 시야 추격 프로토타입. 이동 속도가 소음이 되고 좀비가 소음을 추적하는 규칙을 구현.
-        게임잼 3일 안에 플레이 가능한 빌드를 완성해 제출.
-      </p>
-    </div>
-  </div>
-
-  <div style="margin-top:14px">
-    <h3 class="h-sec" style="font-size:10pt">이 문서에서 다루는 것</h3>
     <table>
-      <thead><tr><th>#</th><th>주제</th><th style="width:38%">핵심 결과</th></tr></thead>
       <tbody>
-        <tr><td class="num">01</td><td>엔진 비의존 코어와 Unity 어댑터 분리</td><td>씬 없이 도는 EditMode 검증 체계</td></tr>
-        <tr><td class="num">02</td><td>육각 그리드 위의 턴 시스템</td><td>“예고 = 실제 결과”를 구조로 보장</td></tr>
-        <tr><td class="num">03</td><td>암시야 — 정보를 감추는 데이터 경계</td><td>필터를 우회할 수 없는 노출 구조</td></tr>
-        <tr><td class="num">04</td><td>계측 기반 성능 최적화</td><td>턴 이동 56 → 18 ms · 씬 로드 31배</td></tr>
-        <tr><td class="num">05</td><td>회귀 게이트와 대규모 리팩토링</td><td>10,690줄 God Object 분해</td></tr>
+        <tr><td colspan="3" style="color:var(--accent); font-weight:700; font-size:8pt; padding-bottom:1px">기억결 / MemoryStone</td></tr>
+        <tr><td class="num" style="width:30px">01</td><td style="width:38%">인게임 플로우</td>
+            <td>게임 소개와 한 턴의 진행 순서</td></tr>
+        <tr><td class="num">02</td><td>도메인 코어와 어댑터 분리</td>
+            <td>게임 로직을 UnityEngine 비의존 계층으로 분리한 과정</td></tr>
+        <tr><td class="num">03</td><td>데이터 중심 구조</td>
+            <td>CSV 저작 → 에디터 임포터 → ScriptableObject 파이프라인</td></tr>
+        <tr><td class="num">04</td><td>Unity Profiler 기반 성능 최적화 (1)</td>
+            <td>진단 과정 · 시야 갱신 · 몬스터 예고 오버레이</td></tr>
+        <tr><td class="num">05</td><td>Unity Profiler 기반 성능 최적화 (2)</td>
+            <td>조명 마스크 재빌드 · 씬 로드 · 결과</td></tr>
+        <tr><td colspan="3" style="color:var(--accent); font-weight:700; font-size:8pt; padding:7px 7px 1px">Rainbow War</td></tr>
+        <tr><td class="num">06</td><td>영역 확장 · 침탈 알고리즘</td>
+            <td>폴리곤을 폴리라인으로 자르는 확장 규칙과 침탈 시 조각 분리</td></tr>
+        <tr><td class="num">07</td><td>Photon 멀티플레이 동기화</td>
+            <td>호스트 권위 판정 · 시작 시점 동기화 · 레이트 조인 복원</td></tr>
+        <tr><td colspan="3" style="color:var(--accent); font-weight:700; font-size:8pt; padding:7px 7px 1px">그 외</td></tr>
+        <tr><td class="num">08</td><td>기타 프로젝트</td>
+            <td>설화 · Match &amp; Mist</td></tr>
       </tbody>
     </table>
   </div>
 
-  <div class="folio"><span>Summary</span><span>02</span></div>
+  <div class="folio"><span>목차</span><span>02</span></div>
  </div>
 </section>
 
@@ -422,54 +391,97 @@ a.trailer{
   </div>
 
   <p class="lede">
-    서울의 랜드마크와 전통 요괴를 배경으로 한 <b>육각 타일 턴제 덱빌딩 로그라이크</b>입니다.
-    제한된 시야 속에서 카드로 이동·공격·정찰을 하며 서울을 탐험합니다.
-    3인 팀에서 <b>팀 리더 겸 개발 전담</b>으로 게임 로직 전체와 클라이언트를 구현했습니다.
+    서울의 랜드마크와 전통 요괴를 배경으로 한 <b>턴제 덱빌딩 로그라이크</b>입니다.
+    <b>&lt;Slay the Spire&gt;</b> 같은 덱 빌딩 로그라이크 장르에 <b>타일 맵 JRPG</b> 장르를 합친 구조입니다.
+    육각 타일 맵 위에서 플레이어는 <b>주변 3칸 시야</b>의 정보와 카드를 적절하게 사용하여
+    어둠 속에 존재하는 요괴를 물리치며 서울을 탐험합니다.
+    카드가 공격·방어만이 아니라 <b>이동과 정찰</b>도 수행하기 때문에,
+    “무엇을 쓸까”와 “어디로 갈까”를 같은 손패로 동시에 고민하게 만드는 것이 이 게임의 차별점입니다.
   </p>
 
-  <figure style="margin-bottom:10px">
-    <img src="assets/print/플레이 화면.jpg" alt="기억결 플레이 화면">
-    <figcaption>메인 게임플레이 — 육각 타일 맵, 제한 시야, 카드 레인, 몬스터 행동 예고</figcaption>
-  </figure>
-
-  <div class="thumbs" style="margin-bottom:11px">
-    <img src="assets/print/몬스터 행동 의도.jpg" alt="몬스터 행동 예고">
-    <img src="assets/print/정찰 카드.jpg" alt="정찰 카드">
-    <img src="assets/print/카드 보상 2.jpg" alt="카드 보상">
+  <div class="figs2" style="margin-bottom:10px; gap:10px">
+    <figure><img src="assets/print/돼지.png" alt="기억결 전투 화면" style="height:47mm; object-fit:cover">
+      <figcaption>전투 — 육각 타일 위에서 요괴와 교전. 붉은 칸이 몬스터의 공격 범위 예고</figcaption></figure>
+    <figure><img src="assets/print/도감.png" alt="기억결 도감" style="height:47mm; object-fit:cover">
+      <figcaption>도감 — 카드 · 상태이상 · 유물 · 함정 · 몬스터를 한곳에서 열람</figcaption></figure>
   </div>
 
-  <div class="cols">
+  <div class="cols" style="margin-bottom:11px">
     <div>
-      <div class="block-label">역할</div>
+      <div class="block-label">프로젝트</div>
       <dl class="kv">
-        <dt>팀</dt><dd>얼갈이 게임즈 · 3인 (개발/기획 · 기획 보조 · 아트)</dd>
-        <dt>담당</dt><dd>게임 로직 · 클라이언트 <b>전담</b>, 기획 · UI/UX, 셰이더, 아트 방향 조율</dd>
-        <dt>기간</dt><dd>2026.06 ~ 진행 중 (공모전 제작 1개월 후 계속 개발)</dd>
-        <dt>성과</dt><dd>제1회 서울 플레이업 AI 게임 챌린지 <b>상위 8팀</b> · 2026 GES 전시·발표 예정</dd>
-        <dt>영상</dt><dd>트레일러 <b>youtu.be/D9CC7_xlRyA</b></dd>
+        <dt>팀</dt><dd>얼갈이 게임즈 · 3인 · <b>팀 리더</b></dd>
+        <dt>기간</dt><dd>2026.05 ~ 진행 중</dd>
+        <dt>엔진</dt><dd>Unity 6000.3</dd>
+        <dt>성과</dt><dd>제1회 서울 플레이업 AI 게임 챌린지 <b>상위 8팀</b> · 2026 GES 전시 예정</dd>
+        <dt>계획</dt><dd>2027년 상반기 Steam 출시 목표</dd>
+        <dt>AI 도구</dt><dd>Claude Code · Codex · Unity MCP · VARCO 3D · VARCO Sounds</dd>
       </dl>
     </div>
     <div>
-      <div class="block-label">규모와 검증</div>
-      <table>
-        <tbody>
-          <tr><td>자동화 테스트</td><td class="num">218 파일 · EditMode 925 pass</td></tr>
-          <tr><td>어셈블리</td><td class="num">제품 11 · 에디터 3 · 테스트 5</td></tr>
-          <tr><td>제품 코드</td><td class="num">C# 509 파일</td></tr>
-          <tr><td>직접 작성 셰이더</td><td class="num">11종</td></tr>
-          <tr><td>ScriptableObject</td><td class="num">29종</td></tr>
-          <tr><td>버전 관리</td><td class="num">UVCS (Plastic SCM)</td></tr>
-        </tbody>
-      </table>
+      <div class="block-label">담당 범위</div>
+      <dl class="kv" style="gap:4px 10px">
+        <dt>개발</dt><dd>클라이언트 · 게임 로직 <b>전담</b></dd>
+        <dt>기획</dt><dd>게임 기획 전반 · 레벨 디자인</dd>
+        <dt>UI/UX</dt><dd>HUD · 카드 레인 · 상점 · 보상 · 튜토리얼</dd>
+        <dt>아트</dt><dd>카드 · 아이콘 2D 일러스트 생성 · VFX 재창작</dd>
+        <dt>데이터</dt><dd>CSV 저작 → 에디터 임포터 파이프라인</dd>
+        <dt>품질</dt><dd>자동화 테스트 · 성능 계측 인프라</dd>
+      </dl>
+      <p style="font-size:8.4pt; color:var(--ink-3); margin-top:4px">
+        배경 · 캐릭터 모델링 아트는 팀원이 담당했습니다.</p>
     </div>
   </div>
 
-  <div class="result pin">
-    <b>개발 방식</b> — Claude Code·Codex 에이전트와 함께 개발합니다.
-    게임 규칙을 UnityEngine 비의존 어셈블리로 분리해, 에이전트가 CLI에서 고치고 → 테스트를 돌리고 →
-    다시 고치는 검증 루프를 스스로 닫을 수 있게 만들었습니다. 경계는 asmdef 제약이,
-    결과는 EditMode 테스트 925개가 지킵니다. 3인 팀이 1개월 공모전 일정에 빌드를 내고,
-    그 뒤로도 같은 속도로 개발을 이어갈 수 있는 바탕입니다.
+  <a class="trailer" href="https://youtu.be/81n_Go-B73c">
+      <img class="trailer-qr" src="assets/qr-trailer.svg" alt="기억결 트레일러 QR 코드">
+      <span>
+        <span class="trailer-label">기억결 트레일러 · 플레이 영상</span><br>
+        <span class="trailer-url">youtu.be/81n_Go-B73c</span>
+      </span>
+    </a>
+
+  <div class="block" style="margin-top:11px">
+    <div class="block-label">직접 설계 · 구현한 시스템</div>
+    <div class="cols" style="gap:0 16px">
+      <table style="font-size:8.6pt">
+        <tbody>
+          <tr><td style="width:38%"><b>아키텍처 설계</b></td>
+            <td>게임 로직을 UnityEngine 비의존 도메인 코어로 분리하고 Unity를 어댑터로 배치</td></tr>
+          <tr><td><b>헥스 좌표계 · 거리 로직</b></td>
+            <td>축좌표계로 이웃 · 거리 · 회전을 정수 연산화.
+                직선 거리 · Dijkstra · BFS를 용도별로 분리</td></tr>
+          <tr><td><b>턴 페이즈 시스템</b></td>
+            <td>한 턴을 이동 · 액션 네 단계로 나누고, 몬스터의 다음 행동을
+                플레이어 이동이 끝난 시점에 확정해 <b>예고한 대로만 실행</b>되게 보장</td></tr>
+          <tr><td><b>데이터 중심 구조</b></td>
+            <td>카드 · 몬스터 · 상태이상을 CSV로 저작하고
+                에디터 임포터가 ScriptableObject로 변환</td></tr>
+          <tr><td><b>연출 재생 상태 관리</b></td>
+            <td>연출 타이밍을 이펙트 버퍼에 쌓아 애니메이션 비트에 맞춰 재생.
+                전용 설정 씬을 만들어 전투 없이 VFX · SFX 타이밍을 조정</td></tr>
+        </tbody>
+      </table>
+      <table style="font-size:8.6pt">
+        <tbody>
+          <tr><td style="width:38%"><b>암시야 (Fog of War)</b></td>
+            <td>가 보지 않은 지역을 가리는 안개. 화면에서 어둡게 칠하는 대신
+                <b>UI가 읽을 데이터 자체를 차단</b>하고, 시야는 조명 마스크로 표현</td></tr>
+          <tr><td><b>자체 맵 에디터</b></td>
+            <td>헥스 맵을 데이터 에셋으로 저작하는 Editor 확장.
+                도구 14종 · 스트로크 Undo · 저작 검증 리포트</td></tr>
+          <tr><td><b>절차적 배치</b></td>
+            <td>위험 예산과 가중 추첨으로 몬스터 · 함정 배치.
+                시드를 저장해 같은 판을 재현</td></tr>
+          <tr><td><b>자동화 테스트 회귀 게이트</b></td>
+            <td>EditMode 테스트 925건과 렌더 복잡도 기준값 대조로
+                성능 · 동작 회귀를 자동 검출</td></tr>
+          <tr><td><b>ImageGen 파이프라인</b></td>
+            <td>아트 가이드 · 프리셋 · 데이터 행을 읽어 프롬프트를 산출하는 컴파일러.
+                과금 게이트와 생성 출처 기록</td></tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 
   <div class="folio"><span>기억결 / MemoryStone</span><span>03</span></div>
@@ -477,765 +489,1029 @@ a.trailer{
 </section>
 
 
-<!-- ================= p4 · 카드 01 아키텍처 ================= -->
-<section class="page">
+<!-- ================= p4 · 카드 01 인게임 플로우 ================= -->
+<section class="page airy">
  <div class="page-inner">
   <div class="card-head">
     <span class="card-num">01</span>
-    <h2 class="card-title">엔진 비의존 코어와 Unity 어댑터 분리</h2>
-    <span class="card-tag">Assembly Definition · 의존성 역전</span>
+    <h2 class="card-title">인게임 플로우</h2>
+    <span class="card-tag">한 턴의 진행 순서</span>
   </div>
 
   <p class="lede">
-    전투·맵·카드 규칙을 <b>UnityEngine을 참조할 수 없는 어셈블리</b>로 떼어내고,
-    그 경계를 컴파일러가 강제하게 했습니다.
+    게임은 턴제 방식으로 진행되며 한 턴은
+    <b>플레이어 이동 → 몬스터 이동 → 플레이어 액션 → 몬스터 액션</b> 네 페이즈로 돌아갑니다.
+    이동과 액션이 나뉘어 있어, <b>먼저 자리를 잡고 나서 무엇을 할지 고르는</b> 순서가 됩니다.
+    <b>기력</b>이라는 공유 자원으로 이동과 액션(공격 · 방어)을 분배하기 때문에,
+    플레이어는 이동과 액션을 잘 분배하며 탐험과 전투를 진행합니다.
   </p>
 
-  <div class="cols-37">
-    <div>
-      <div class="block">
-        <div class="block-label">문제</div>
-        <p>규칙이 MonoBehaviour 안에 있으면 “공격 카드가 맞게 처리되는가”를 확인하려고
-        매번 Unity를 켜고 Play를 눌러야 합니다. 턴제 게임은 규칙이 계속 바뀌는데,
-        손으로 플레이해서 확인하는 방식으로는 <b>A를 고쳤더니 B가 깨진 것</b>을 잡을 수 없습니다.</p>
-      </div>
+  <div class="block" style="margin-bottom:12px">
+    <svg viewBox="0 0 660 214" style="width:100%; height:auto" role="img" aria-label="턴 루프 다이어그램">
+      <defs>
+        <marker id="ah" markerWidth="9" markerHeight="9" refX="7.5" refY="3.2"
+                orient="auto" markerUnits="strokeWidth">
+          <path d="M0,0 L7.5,3.2 L0,6.4 z" fill="#B4700C"/>
+        </marker>
+        <marker id="ahg" markerWidth="9" markerHeight="9" refX="7.5" refY="3.2"
+                orient="auto" markerUnits="strokeWidth">
+          <path d="M0,0 L7.5,3.2 L0,6.4 z" fill="#9a9a9a"/>
+        </marker>
+      </defs>
 
-      <div class="block">
-        <div class="block-label">접근</div>
-        <ul>
-          <li>의존 방향을 <b>표현 → 런타임 단방향</b>으로 고정</li>
-          <li>순수 계층 3개에 <code>noEngineReferences: true</code> —
-              <code>using UnityEngine</code>이 <b>컴파일 에러</b></li>
-          <li>표현 계층이 전투 상태를 읽어야 하는 자리는 역참조 대신 seam으로 해결</li>
-        </ul>
-      </div>
+      <!-- 1. 플레이어 이동 -->
+      <rect x="6" y="26" width="142" height="84" rx="5" fill="#FDF6E7" stroke="#B4700C" stroke-width="1.4"/>
+      <text x="77" y="45" text-anchor="middle" font-size="9" font-weight="700" fill="#B4700C">PHASE 1</text>
+      <text x="77" y="66" text-anchor="middle" font-size="13.5" font-weight="700" fill="#1a1a1a">플레이어 이동</text>
+      <text x="77" y="85" text-anchor="middle" font-size="10" fill="#4a4a4a">이동 카드 · 정찰 카드</text>
 
-      <div class="block">
-        <div class="block-label">순환을 끊은 세 가지 수법</div>
-        <table>
-          <tbody>
-            <tr><td>인터페이스 인버전</td><td><code>ICombatAudioHost</code></td></tr>
-            <tr><td>델리게이트 인버전</td><td><code>LabelFontApplier</code></td></tr>
-            <tr><td>공유 계약 어셈블리</td><td><code>Combat.Contracts</code></td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
+      <line x1="150" y1="68" x2="176" y2="68" stroke="#B4700C" stroke-width="1.4" marker-end="url(#ah)"/>
 
-    <div>
-      <div class="block-label">어셈블리 참조 그래프</div>
-      <div class="arch">
-        <div class="arch-band pure">
-          <div class="arch-band-title">순수 C# — UnityEngine 참조 컴파일 금지</div>
-          <div class="arch-row">
-            <span class="asm">Combat.Runtime<small>전투 규칙 · 158 파일</small></span>
-            <span class="asm">Map.Runtime<small>맵 · 경로 · 29</small></span>
-            <span class="asm">CardCore<small>카드 · 11</small></span>
-          </div>
-        </div>
-        <div class="arrow">▲</div>
-        <div class="arch-band">
-          <div class="arch-band-title">공유 계약</div>
-          <div class="arch-row">
-            <span class="asm">Combat.Contracts<small>표현 계층 간 순환 차단</small></span>
-          </div>
-        </div>
-        <div class="arrow">▲</div>
-        <div class="arch-band">
-          <div class="arch-band-title">표현 (Unity)</div>
-          <div class="arch-row">
-            <span class="asm">Cards.Unity</span>
-            <span class="asm">Audio</span>
-            <span class="asm">Map.Unity</span>
-            <span class="asm">Tutorial</span>
-            <span class="asm">Combat</span>
-          </div>
-        </div>
-        <div class="arrow">▲</div>
-        <div class="arch-band">
-          <div class="arch-band-title">합성 · 개발 전용</div>
-          <div class="arch-row">
-            <span class="asm">Flow<small>씬 전환 · 최상위</small></span>
-            <span class="asm">Dev<small>UNITY_EDITOR 제약 — 출하 빌드 제외</small></span>
-          </div>
-        </div>
-      </div>
+      <!-- 2. 몬스터 이동 -->
+      <rect x="184" y="26" width="142" height="84" rx="5" fill="#f7f7f5" stroke="#c9c9c9" stroke-width="1.4"/>
+      <text x="255" y="45" text-anchor="middle" font-size="9" font-weight="700" fill="#7a7a7a">PHASE 2</text>
+      <text x="255" y="66" text-anchor="middle" font-size="13.5" font-weight="700" fill="#1a1a1a">몬스터 이동</text>
+      <text x="255" y="85" text-anchor="middle" font-size="10" fill="#4a4a4a">예고한 대로 이동</text>
 
-      <pre style="margin-top:9px"><span class="c">// Combat/Runtime/SeoulPlayup.Combat.Runtime.asmdef</span>
-{
-  "name": "SeoulPlayup.Combat.Runtime",
-  "references": [ "SeoulPlayup.CardCore",
-                  "SeoulPlayup.Map.Runtime" ],
-  <span class="k">"noEngineReferences": true</span>
-}</pre>
-    </div>
+      <line x1="328" y1="68" x2="354" y2="68" stroke="#9a9a9a" stroke-width="1.4" marker-end="url(#ahg)"/>
+
+      <!-- 3. 플레이어 액션 -->
+      <rect x="362" y="26" width="142" height="84" rx="5" fill="#FDF6E7" stroke="#B4700C" stroke-width="1.4"/>
+      <text x="433" y="45" text-anchor="middle" font-size="9" font-weight="700" fill="#B4700C">PHASE 3</text>
+      <text x="433" y="66" text-anchor="middle" font-size="13.5" font-weight="700" fill="#1a1a1a">플레이어 액션</text>
+      <text x="433" y="85" text-anchor="middle" font-size="10" fill="#4a4a4a">공격 · 방어 · 정찰 · 필드</text>
+
+      <line x1="506" y1="68" x2="532" y2="68" stroke="#B4700C" stroke-width="1.4" marker-end="url(#ah)"/>
+
+      <!-- 4. 몬스터 액션 -->
+      <rect x="540" y="26" width="114" height="84" rx="5" fill="#f7f7f5" stroke="#c9c9c9" stroke-width="1.4"/>
+      <text x="597" y="45" text-anchor="middle" font-size="9" font-weight="700" fill="#7a7a7a">PHASE 4</text>
+      <text x="597" y="66" text-anchor="middle" font-size="13.5" font-weight="700" fill="#1a1a1a">몬스터 액션</text>
+      <text x="597" y="85" text-anchor="middle" font-size="10" fill="#4a4a4a">예고한 공격 실행</text>
+
+      <!-- 순환 화살표 -->
+      <path d="M597,113 L597,150 L77,150 L77,116"
+            fill="none" stroke="#c9c9c9" stroke-width="1.4"
+            stroke-dasharray="4 3" marker-end="url(#ah)"/>
+      <text x="337" y="145" text-anchor="middle" font-size="10" font-weight="700" fill="#7a7a7a">다음 턴</text>
+
+      <!-- 예고 커밋 표시 -->
+      <line x1="166" y1="18" x2="166" y2="178" stroke="#B4700C" stroke-width="1" stroke-dasharray="3 3"/>
+      <circle cx="166" cy="178" r="2.6" fill="#B4700C"/>
+      <text x="176" y="176" font-size="10.5" fill="#B4700C" font-weight="700">예고 확정 시점</text>
+      <text x="176" y="193" font-size="9.5" fill="#4a4a4a">플레이어 이동이 끝나는 순간 몬스터의 이동·공격이 확정됩니다.</text>
+    </svg>
   </div>
 
-  <div class="note" style="margin-top:10px">
-    <b>Unity에서 특히 신경 쓴 것</b> — 어셈블리를 쪼개면 <code>internal</code> 접근이 끊깁니다.
-    분리 전 접근성을 보존해야 하는 곳만 <code>InternalsVisibleTo</code>로 열되,
-    <b>새 코드가 거기 기대는 설계는 하지 않는다</b>는 규칙을 함께 정했습니다.
-    그러지 않으면 분리한 의미가 사라지기 때문입니다.
+  <div class="figs2" style="margin-bottom:10px; gap:10px">
+    <figure><img src="assets/print/정찰 카드 2.png" alt="카드 조작 화면" style="height:49mm; object-fit:cover">
+      <figcaption>카드 조작 화면 — 손패에서 카드를 골라 이동 · 정찰 · 공격 · 방어한다</figcaption></figure>
+    <figure><img src="assets/print/몬스터 공격 의도 2.png" alt="몬스터 행동 예고" style="height:49mm; object-fit:cover">
+      <figcaption>몬스터의 이동 경로와 공격 범위가 칸에 미리 표시된다</figcaption></figure>
+    <figure><img src="assets/print/암시야.png" alt="암시야" style="height:49mm; object-fit:cover">
+      <figcaption>플레이어 시야는 주위 3칸으로, 그 밖의 정보는 가려져 있다</figcaption></figure>
+    <figure><img src="assets/print/카드 보상 2.jpg" alt="카드 보상" style="height:49mm; object-fit:cover">
+      <figcaption>전투 후 카드를 골라 덱을 키운다</figcaption></figure>
   </div>
 
   <div class="result pin">
-    <b>결과</b> — 전투·맵·카드 규칙이 <b>씬 없이 EditMode에서 검증</b>됩니다.
-    현재 참조 그래프 위반 0건, EditMode 스위트 925 pass.
-    <code>Combat.Runtime.dll</code>은 Unity 없이도 로드해 실행할 수 있습니다.
+    <b>현재 구현 범위</b> — 카드 <b>60종</b> · 몬스터 <b>6종</b> · 레벨 <b>2개</b>(튜토리얼 맵, 스테이지 맵)
   </div>
 
-  <div class="folio"><span>01 · 엔진 비의존 코어와 Unity 어댑터 분리</span><span>04</span></div>
+  <div class="folio"><span>01 · 인게임 플로우</span><span>04</span></div>
  </div>
 </section>
 
 
-<!-- ================= p5 · 카드 02 육각 그리드 위의 턴 시스템 ================= -->
-<section class="page">
+<!-- ================= 카드 · 클래스 책임 분리 ================= -->
+<section class="page airy">
  <div class="page-inner">
   <div class="card-head">
     <span class="card-num">02</span>
-    <h2 class="card-title">육각 그리드 위의 턴 시스템</h2>
-    <span class="card-tag">순수 C# · 상태 머신 · 3D 수학</span>
+    <h2 class="card-title">도메인 코어와 어댑터 분리 (Ports &amp; Adapters)</h2>
+    <span class="card-tag">헥사고날 · Observer · asmdef 경계</span>
   </div>
 
-  <p class="lede">
-    육각 격자를 <b>3차원 큐브 좌표</b>로 다뤄 거리·회전·방향 판정을 각각 한 줄로 정리했고,
-    그 위에 <b>“적의 행동 예고는 반드시 지켜진다”</b>를 자료구조 수준에서 보장하는
-    턴 시스템을 올렸습니다.
-  </p>
-
-  <div class="cols">
-    <div>
-      <div class="block">
-        <div class="block-label">좌표계 — 축좌표와 큐브 연산</div>
-        <p>육각 격자를 <code>(행, 열)</code>로 저장하면 짝수 행과 홀수 행의 이웃 계산식이 달라집니다.
-        축을 3개 두고 <code>q + r + s = 0</code> 제약을 걸면 이 분기가 사라집니다.
-        저장은 <code>q, r</code> 두 개만 하고 <code>s</code>는 파생시켜 불일치를 차단했습니다.</p>
-        <pre><span class="c">// 저장은 2개, 사용은 3축. S는 제약에서 유도.</span>
-<span class="k">public int</span> S => -Q - R;
-
-<span class="c">// 거리 — 한 칸 이동마다 두 축이 ±1씩 변한다.</span>
-<span class="k">public int</span> DistanceTo(HexCoord o)
-    => (Abs(Q-o.Q) + Abs(R-o.R) + Abs(S-o.S)) / 2;
-
-<span class="c">// 60도 회전 = 좌표 순환 한 번. 삼각함수 불필요.</span>
-<span class="k">var</span> nextQ = -r;
-<span class="k">var</span> nextR = q + r;</pre>
-      </div>
-
-      <div class="block">
-        <div class="block-label">경로 탐색 — HexPathfinder</div>
-        <ul>
-          <li>지형별 <code>BaseMoveCost</code>가 달라 <b>가중 최단경로</b>로 탐색</li>
-          <li><code>GetReachableCells</code>(범위 하이라이트)와 <code>FindPath</code>(실제 경로)가
-              같은 계산을 공유해 규칙이 어긋날 수 없음</li>
-          <li>맵·점유·지형을 전부 <b>인자로 주입</b> — 숨은 상태가 없어 어떤 상황도 테스트 가능</li>
-        </ul>
-      </div>
+  <div class="cols" style="margin:8px 0 11px">
+    <div class="block">
+      <div class="block-label">문제</div>
+      <ul style="font-size:9.2pt">
+        <li><b>①</b> 초기에는 게임 로직이 Unity Engine에 종속되어, 로직을 추가하거나 변경할 때마다
+            <b>Play 모드에 진입해 테스트</b>해야 했고 해당 시간이 개발 속도를 늦췄습니다.</li>
+        <li><b>②</b> AI 에이전트를 개발에 투입하면서 <b>테스트 단계에서 사람이 병목</b>이 됐습니다.
+            로직의 작성 속도를 사람이 따라가기 벅찼고, 규모가 커질수록
+            <b>작성한 기능의 테스트가 자꾸 미뤄지는</b> 문제가 발생했습니다.</li>
+        <li><b>③</b> 초기에는 하나의 <code>MonoBehaviour</code> 파일에 모든 게임 로직을 작성했고,
+            그 결과 한 파일이 <b>10,690줄</b>까지 커졌습니다.</li>
+      </ul>
     </div>
-
-    <div>
-      <div class="block">
-        <div class="block-label">페이즈 순환 — 전환 입구는 하나</div>
-        <pre style="font-size:7.6pt">PlayerMovement  ─EndAction()→
-MonsterMovement ─Resolve→
-PlayerAction    ─EndAction()→
-MonsterAction   ─Resolve→  (다음 턴)</pre>
-        <p><code>EndAction()</code>이 유일한 전환 트리거입니다. 전환 경로가 여러 개면 조합이 폭발하는데,
-        입구를 하나로 두면 <b>“왜 넘어갔지?”의 답이 항상 하나</b>입니다.</p>
-      </div>
-
-      <div class="block">
-        <div class="block-label">예고를 지키게 만든 세 장치</div>
-        <ul>
-          <li><b>커밋 시점 좌표 보존</b> — <code>EnemyIntent.EnemyCoord</code>는 예고를 만든 시점의
-              좌표를 복사해 얼려둡니다. 몬스터가 움직여도 예고가 따라가지 않습니다.</li>
-          <li><b>전 구간 잠금</b> — 커밋된 인텐트는 플레이어의 이동·액션·턴 종료 전 구간에서
-              유지됩니다. 플레이어가 움직였다고 다시 조준하지 않습니다.</li>
-          <li><b>회피의 정의를 좁힘</b> — 공격 범위를 <b>구체적인 칸의 집합</b>으로 확정해 보여줍니다.
-              집합 밖으로 나가야 회피이고, 안에서의 재배치는 회피가 아닙니다.</li>
-        </ul>
-      </div>
-
-      <div class="block">
-        <div class="block-label">플랜 예약 — 프리뷰가 곧 플랜</div>
-        <p>몬스터 둘에게 “가장 가까운 칸으로”라고 하면 둘 다 같은 칸을 골라
-        해석 단계에서 하나가 밀려나고, 예고와 결과가 달라집니다.
-        계획 시점에 목적지를 <b>예약</b>해 겹치지 않게 하고, 예고를 만드는 계산과
-        실제 이동을 해석하는 계산이 같은 결과를 내게 했습니다.</p>
-      </div>
+    <div class="block">
+      <div class="block-label">선택한 구조</div>
+      <ul style="font-size:9.2pt">
+        <li><b>도메인 코어 / 어댑터 분리 — Ports &amp; Adapters(헥사고날)</b><br>
+            전투 · 맵 · 카드 로직을 <b>UnityEngine 비의존 어셈블리</b>로 떼어내,
+            <b>Play 모드 없이 EditMode와 CLI 환경에서</b> 테스트를 검증할 수 있도록 했습니다.
+            <span style="color:var(--accent)">→ ① ②</span></li>
+        <li><b>결과 이벤트 발행 — Observer</b><br>
+            도메인은 결과만 이벤트로 올리고 화면 · 소리 · 카메라가 각자 구독하도록 하여,
+            이후 <b>연출을 늘려도 도메인 코드가 커지지 않게</b> 했습니다.
+            <span style="color:var(--accent)">→ ③</span></li>
+        <li><b>asmdef 참조 제약</b><br>
+            <b>어댑터 → 코어 단방향</b>만 허용하여 <b>빌드를 막는 조건</b>을 두었습니다.</li>
+      </ul>
     </div>
   </div>
 
-  <div class="figs3" style="margin-top:11px">
-    <figure><img src="assets/print/몬스터 이동 경로.jpg" alt="이동 가능 범위와 경로 표시">
-      <figcaption><code>GetReachableCells</code>가 반환한 이동 범위와 선택 경로</figcaption></figure>
-    <figure><img src="assets/print/몬스터 행동 의도 2.jpg" alt="행동 의도 표시">
-      <figcaption>이동 예고와 공격 범위가 칸 집합으로 표시된다</figcaption></figure>
-    <figure><img src="assets/print/몬스터 포위 2.jpg" alt="다중 몬스터 포위">
-      <figcaption>여러 몬스터의 목적지가 계획 시점에 예약돼 겹치지 않는다</figcaption></figure>
+  <svg viewBox="0 0 660 300" style="width:100%; height:auto; margin-bottom:11px"
+       role="img" aria-label="도메인 코어와 어댑터 계층 다이어그램">
+    <defs>
+      <marker id="up" markerWidth="9" markerHeight="9" refX="7.5" refY="3.2" orient="auto" markerUnits="strokeWidth">
+        <path d="M0,0 L7.5,3.2 L0,6.4 z" fill="#B4700C"/>
+      </marker>
+      <marker id="dn" markerWidth="9" markerHeight="9" refX="7.5" refY="3.2" orient="auto" markerUnits="strokeWidth">
+        <path d="M0,0 L7.5,3.2 L0,6.4 z" fill="#9a9a9a"/>
+      </marker>
+    </defs>
+
+    <rect x="2" y="2" width="656" height="150" rx="6" fill="#fff" stroke="#c9c9c9"/>
+    <text x="16" y="21" font-size="9.5" font-weight="700" fill="#7a7a7a" letter-spacing="1">어댑터 계층 — UNITY</text>
+
+    <rect x="176" y="28" width="308" height="28" rx="4" fill="#f7f7f5" stroke="#9a9a9a" stroke-width="1.3"/>
+    <text x="330" y="47" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1a1a1a">MapCombatController</text>
+    <text x="330" y="70" text-anchor="middle" font-size="9" fill="#7a7a7a">플레이어 입력을 받아 도메인에 전달하고, 씬의 오브젝트를 붙잡아 둔다</text>
+
+    <line x1="330" y1="75" x2="330" y2="84" stroke="#c9c9c9" stroke-width="1.2"/>
+    <path d="M78,84 L582,84 M78,84 L78,94 M204,84 L204,94 M330,84 L330,94 M456,84 L456,94 M582,84 L582,94"
+          stroke="#c9c9c9" stroke-width="1.2"/>
+
+    <g font-size="8.4" font-weight="700" fill="#1a1a1a" text-anchor="middle">
+      <rect x="14" y="94" width="128" height="44" rx="4" fill="#fff" stroke="#c9c9c9"/>
+      <text x="78" y="111">EffectPresentation</text>
+      <text x="78" y="122">Controller</text>
+      <text x="78" y="134" font-size="7.6" font-weight="400" fill="#7a7a7a">이펙트 재생 · 피해 숫자 표시</text>
+
+      <rect x="140" y="94" width="128" height="44" rx="4" fill="#fff" stroke="#c9c9c9"/>
+      <text x="204" y="117">CombatAudioPresenter</text>
+      <text x="204" y="134" font-size="7.6" font-weight="400" fill="#7a7a7a">상황에 맞는 효과음 재생</text>
+
+      <rect x="266" y="94" width="128" height="44" rx="4" fill="#fff" stroke="#c9c9c9"/>
+      <text x="330" y="111">CombatActorMarker</text>
+      <text x="330" y="122">Presenter</text>
+      <text x="330" y="134" font-size="7.6" font-weight="400" fill="#7a7a7a">캐릭터 이동 · 피격 반응</text>
+
+      <rect x="392" y="94" width="128" height="44" rx="4" fill="#fff" stroke="#c9c9c9"/>
+      <text x="456" y="111">GameplayHudBridge</text>
+      <text x="456" y="122">StatusIconOverlay</text>
+      <text x="456" y="134" font-size="7.6" font-weight="400" fill="#7a7a7a">체력 · 기력 · 상태이상 표시</text>
+
+      <rect x="518" y="94" width="128" height="44" rx="4" fill="#fff" stroke="#c9c9c9"/>
+      <text x="582" y="111">CinemachineCombat</text>
+      <text x="582" y="122">CameraBinder</text>
+      <text x="582" y="134" font-size="7.6" font-weight="400" fill="#7a7a7a">카메라 추종 · 연출 시점</text>
+    </g>
+
+    <line x1="150" y1="178" x2="150" y2="156" stroke="#B4700C" stroke-width="1.6" marker-end="url(#up)"/>
+    <text x="162" y="172" font-size="9.5" font-weight="700" fill="#B4700C">도메인 이벤트 구독 (Observer)</text>
+    <text x="162" y="184" font-size="8.5" fill="#7a7a7a">EffectResultEvent — 결과만 올라간다</text>
+
+    <line x1="512" y1="156" x2="512" y2="178" stroke="#9a9a9a" stroke-width="1.6" marker-end="url(#dn)"/>
+    <text x="500" y="172" font-size="9.5" font-weight="700" fill="#7a7a7a" text-anchor="end">의존은 어댑터 → 코어 단방향</text>
+    <text x="500" y="184" font-size="8.5" fill="#7a7a7a" text-anchor="end">역참조는 asmdef가 컴파일 에러로 만든다</text>
+
+    <rect x="2" y="192" width="656" height="106" rx="6" fill="#FDF6E7" stroke="#B4700C"/>
+    <text x="16" y="211" font-size="9.5" font-weight="700" fill="#B4700C" letter-spacing="1">도메인 코어 — 순수 C# · UNITYENGINE 참조 불가</text>
+
+    <rect x="14" y="219" width="632" height="28" rx="4" fill="#fff" stroke="#B4700C" stroke-width="1.3"/>
+    <text x="330" y="238" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1a1a1a">CombatState — 카드 사용 · 피해 · 턴 진행, 전투의 모든 상태와 게임 로직</text>
+
+    <g font-size="8.6" font-weight="700" fill="#1a1a1a" text-anchor="middle">
+      <rect x="14" y="256" width="152" height="34" rx="4" fill="#fff" stroke="#e0bf85"/>
+      <text x="90" y="271">HexPathfinder</text>
+      <text x="90" y="283" font-size="7.6" font-weight="400" fill="#7a7a7a">갈 수 있는 칸과 이동 경로</text>
+
+      <rect x="174" y="256" width="152" height="34" rx="4" fill="#fff" stroke="#e0bf85"/>
+      <text x="250" y="271">HexVisibilityRuntime</text>
+      <text x="250" y="283" font-size="7.6" font-weight="400" fill="#7a7a7a">보이는 칸 판정과 정보 차단</text>
+
+      <rect x="334" y="256" width="152" height="34" rx="4" fill="#fff" stroke="#e0bf85"/>
+      <text x="410" y="271">MonsterAiPlanner</text>
+      <text x="410" y="283" font-size="7.6" font-weight="400" fill="#7a7a7a">몬스터의 다음 행동 결정</text>
+
+      <rect x="494" y="256" width="152" height="34" rx="4" fill="#fff" stroke="#e0bf85"/>
+      <text x="570" y="271">PlacementRandomizer</text>
+      <text x="570" y="283" font-size="7.6" font-weight="400" fill="#7a7a7a">몬스터 · 함정 배치 추첨</text>
+    </g>
+  </svg>
+
+  <div class="block">
+    <div class="block-label">효과</div>
+    <table style="font-size:9pt">
+      <thead><tr><th style="width:40%">얻은 것</th><th>근거</th></tr></thead>
+      <tbody>
+        <tr><td><span style="color:var(--accent); font-weight:700">①</span>
+              <b>Play 모드 없이 게임 로직 검증</b></td>
+          <td>씬 로드와 Play 모드 진입 없이 에디터에서 바로 실행되는 <b>EditMode 테스트 925건</b>.
+              로직 변경 후 확인까지 초 단위</td></tr>
+        <tr><td><span style="color:var(--accent); font-weight:700">②</span>
+              <b>AI 에이전트가 검증까지 스스로 수행</b></td>
+          <td>도메인이 UnityEngine 비의존이라 <b>CLI 테스트 환경 조성</b></td></tr>
+        <tr><td><span style="color:var(--accent); font-weight:700">③</span>
+              <b>연출과 게임 로직 파일의 비의존성 확보</b></td>
+          <td>이펙트 · 효과음 · 화면 흔들림 · 카메라 연출을 <b>Presenter와 CSV 기반 큐 테이블</b>에서 추가</td></tr>
+      </tbody>
+    </table>
   </div>
 
-  <div class="result pin">
-    <b>결과</b> — 이동·시야·공격 패턴이 같은 좌표 연산 위에서 돌고, 전부
-    <code>Map.Runtime</code>(순수 C#)에 있어 씬 없이 검증됩니다.
-    페이즈 순환·인텐트 커밋·목적지 예약은 EditMode 테스트로 잠겨 있어,
-    새 카드나 상태이상을 추가해도 <b>“예고 = 실제 결과”가 깨지면 즉시 빨간불</b>이 켜집니다.
-  </div>
-
-  <div class="folio"><span>02 · 육각 그리드 위의 턴 시스템</span><span>05</span></div>
+  <div class="folio"><span>02 · 도메인 코어와 어댑터 분리 (Ports &amp; Adapters)</span><span>05</span></div>
  </div>
 </section>
 
 
-<!-- ================= p6 · 카드 03 암시야 ================= -->
-<section class="page">
+<!-- ================= 카드 · 데이터 중심 구조 ================= -->
+<section class="page airy">
  <div class="page-inner">
   <div class="card-head">
     <span class="card-num">03</span>
-    <h2 class="card-title">암시야 — 정보를 감추는 데이터 경계</h2>
-    <span class="card-tag">데이터 경계 설계 · 셰이더</span>
+    <h2 class="card-title">데이터 중심 구조 — CSV와 ScriptableObject</h2>
+    <span class="card-tag">에디터 임포터 · 임포트 시점 검증 · 전략 패턴</span>
   </div>
 
-  <p class="lede">
-    안개 속 칸의 원본 데이터가 <b>렌더러에 아예 도달하지 못하게</b> 설계했습니다.
-    화면에서 검게 가리는 방식은 새 UI가 생길 때마다 정보가 샐 수 있기 때문입니다.
-  </p>
-
-  <div class="cols-37">
-    <div>
-      <figure>
-        <img src="assets/print/정찰 카드.jpg" alt="정찰 카드로 시야를 넓히는 장면">
-        <figcaption>정찰 카드로 앞을 밝힌다. 시야는 순수 육각 거리로만 계산된다</figcaption>
-      </figure>
-
-      <div class="block" style="margin-top:10px">
-        <div class="block-label">문제</div>
-        <p>“검게 칠하기”로 만들면 렌더러는 <b>원본 데이터를 전부 들고 있으면서</b> 화면에만 안 그립니다.
-        그러면 툴팁이 안개 속 칸 이름을 띄우고, 미니맵이 아직 못 본 랜드마크를 표시하고,
-        새 UI를 만든 사람이 필터를 빠뜨립니다. <b>표면이 늘 때마다 누출 가능성이 생깁니다.</b></p>
-      </div>
-
-      <div class="block">
-        <div class="block-label">단계별 노출 경계</div>
-        <table>
-          <thead><tr><th>노출 항목</th><th style="text-align:center">Hinted</th><th style="text-align:center">Revealed</th></tr></thead>
-          <tbody>
-            <tr><td>지형 · 이동비용 · 보행 · 높이</td><td style="text-align:center">○</td><td style="text-align:center">○</td></tr>
-            <tr><td>타일 정의 · 이벤트 · 랜드마크</td><td style="text-align:center">✕</td><td style="text-align:center">○</td></tr>
-          </tbody>
-        </table>
-        <p style="margin-top:5px">Hinted는 <b>“지나갈 수 있는 땅인가”까지만</b> 답하고
-        <b>“거기 무엇이 있는지”는 숨깁니다.</b> 플레이 경험으로는
-        <i>“길이 있는 건 알겠는데 뭐가 있는진 모르겠다”</i>가 됩니다.</p>
-      </div>
+  <div class="cols" style="margin:8px 0 10px">
+    <div class="block">
+      <div class="block-label">문제</div>
+      <ul style="font-size:9.2pt">
+        <li><b>①</b> 공모전 1차 심사를 위해 <b>한 달이라는 한정된 기간</b> 안에 제작해야 했고,
+            제작 도중 기획을 수정하는 일이 많았습니다.
+            단순 serialized field로 데이터를 관리해서는 <b>제작 속도 · 협업 · 밸런싱</b>에 어려움이 있었습니다.</li>
+        <li><b>②</b> ‘카드 게임’이라는 특성상 <b>데이터가 많고 효과가 다양해</b> 관리가 어려웠습니다.
+            또한 카드에 따라 다양한 규칙이 존재하는데, <b>별도의 검증 루프가 없어 오류가 자주 발생</b>했습니다.</li>
+      </ul>
     </div>
-
-    <div>
-      <div class="block-label">해결 — 걸러진 뷰만 건넨다</div>
-      <pre><span class="c">// HexVisibilityRuntime.GetSafeCellInfo</span>
-<span class="k">if</span> (visibility == Unknown)
-    <span class="k">return</span> SafeCellInfo.Unknown(coord);   <span class="c">// 아무것도 안 줌</span>
-
-<span class="k">if</span> (visibility == Hinted)
-    <span class="k">return new</span> HexVisibilitySafeCellInfo(
-        coord, visibility, <span class="k">true</span>, <span class="k">true</span>, <span class="k">false</span>,
-        string.Empty,        <span class="c">// 타일 정의 id  숨김</span>
-        cell.TerrainTypeId,  <span class="c">// 지형        노출</span>
-        cell.BaseMoveCost,   <span class="c">// 이동 비용    노출</span>
-        cell.BaseWalkable,   <span class="c">// 보행 가능    노출</span>
-        cell.BaseBlocksVision,
-        string.Empty,        <span class="c">// 이벤트 id    숨김</span>
-        string.Empty,        <span class="c">// 랜드마크 id  숨김</span>
-        cell.VisualFloor, isTrapRevealed);
-
-<span class="k">return new</span> HexVisibilitySafeCellInfo( <span class="c">/* 전부 노출 */</span> );</pre>
-
-      <p style="margin-top:7px">원본 <code>cell</code>은 이 함수 밖으로 나가지 않습니다.
-      나가는 것은 단계에 따라 걸러진 별도 구조체뿐이라
-      <b>소비자가 필터를 우회할 방법이 아예 없습니다.</b>
-      새 UI를 만드는 사람이 실수하려야 할 수가 없습니다.</p>
-
-      <div class="block" style="margin-top:9px">
-        <div class="block-label">상태 규칙</div>
-        <ul>
-          <li>승급은 <b>단조</b> — 한 번 밝혀진 칸을 낮추려는 시도는 무시됩니다</li>
-          <li>임시 공개 = (플레이어 시야 ∪ 유효한 필드 오브젝트 ∪ 이번 턴 정찰)의
-              <b>합집합을 매 갱신마다 재구성</b> — 차감식이면 소스끼리 서로를 지우는 버그가 납니다</li>
-          <li>저장 복원 시 <b>먼저 전부 지우고</b> 복원 — 단조 승급 때문에 덮어쓰면
-              전투 시작 시의 공개가 섞여 들어옵니다</li>
-        </ul>
-      </div>
+    <div class="block">
+      <div class="block-label">해결 방안</div>
+      <ul style="font-size:9.2pt">
+        <li><b>CSV 저작 → 에디터 임포터 → ScriptableObject</b><br>
+            수치 · 사거리 · 코스트 · 희귀도까지 전부 컬럼으로 옮겨,
+            인스펙터를 거치지 않고 <b>표 한 장에서 밸런싱</b>합니다. <span style="color:var(--accent)">→ ①</span></li>
+        <li><b>효과 디스패처 (전략 패턴)</b><br>
+            공통 카드는 공통 경로로 처리하고, 규칙이 다른 카드만 전용 핸들러에 위임해
+            <b>카드가 늘어도 분기가 늘지 않게</b> 했습니다. <span style="color:var(--accent)">→ ②</span></li>
+        <li><b>임포트 시점 검증</b><br>
+            잘못된 값을 관대하게 넘기지 않고 <b>임포트를 실패</b>시켜,
+            게임을 켜기 전에 검증 루프가 돌게 했습니다. <span style="color:var(--accent)">→ ②</span></li>
+      </ul>
     </div>
   </div>
 
-  <div class="figs3" style="margin-top:11px">
-    <figure><img src="assets/print/튜토리얼 맵.jpg" alt="탐험 초반 시야">
-      <figcaption>탐험 초반 — 주변만 Revealed, 나머지는 Unknown</figcaption></figure>
-    <figure><img src="assets/print/송파구 맵.jpg" alt="탐험이 진행된 맵">
-      <figcaption>진행 후 — 지나온 칸은 Hinted로 남고 지형만 보인다</figcaption></figure>
-    <figure><img src="assets/print/몬스터 상세 툴팁.jpg" alt="몬스터 툴팁">
-      <figcaption>툴팁도 같은 필터를 거친 뷰만 읽는다</figcaption></figure>
+  <svg viewBox="0 0 660 176" style="width:100%; height:auto; margin-bottom:10px"
+       role="img" aria-label="CSV to ScriptableObject 파이프라인">
+    <defs>
+      <marker id="dm" markerWidth="9" markerHeight="9" refX="7.5" refY="3.2" orient="auto" markerUnits="strokeWidth">
+        <path d="M0,0 L7.5,3.2 L0,6.4 z" fill="#B4700C"/>
+      </marker>
+      <marker id="dx" markerWidth="9" markerHeight="9" refX="7.5" refY="3.2" orient="auto" markerUnits="strokeWidth">
+        <path d="M0,0 L7.5,3.2 L0,6.4 z" fill="#c0392b"/>
+      </marker>
+    </defs>
+
+    <g text-anchor="middle">
+      <rect x="2" y="30" width="140" height="52" rx="5" fill="#FDF6E7" stroke="#B4700C" stroke-width="1.3"/>
+      <text x="72" y="50" font-size="10" font-weight="700" fill="#1a1a1a">CSV 저작</text>
+      <text x="72" y="64" font-size="8.2" fill="#4a4a4a">카드 한 장 = 한 행</text>
+      <text x="72" y="75" font-size="8.2" fill="#7a7a7a">기획 담당도 직접 편집</text>
+
+      <line x1="144" y1="56" x2="176" y2="56" stroke="#B4700C" stroke-width="1.5" marker-end="url(#dm)"/>
+
+      <rect x="180" y="30" width="150" height="52" rx="5" fill="#fff" stroke="#9a9a9a" stroke-width="1.3"/>
+      <text x="255" y="50" font-size="10" font-weight="700" fill="#1a1a1a">에디터 임포터</text>
+      <text x="255" y="64" font-size="8.2" fill="#4a4a4a">Tools ▸ Cards ▸ Import</text>
+      <text x="255" y="75" font-size="8.2" fill="#7a7a7a">파싱 + 검증</text>
+
+      <line x1="332" y1="56" x2="364" y2="56" stroke="#B4700C" stroke-width="1.5" marker-end="url(#dm)"/>
+
+      <rect x="368" y="30" width="140" height="52" rx="5" fill="#fff" stroke="#9a9a9a" stroke-width="1.3"/>
+      <text x="438" y="50" font-size="10" font-weight="700" fill="#1a1a1a">CardCatalogAsset</text>
+      <text x="438" y="64" font-size="8.2" fill="#4a4a4a">ScriptableObject</text>
+
+      <line x1="510" y1="56" x2="542" y2="56" stroke="#B4700C" stroke-width="1.5" marker-end="url(#dm)"/>
+
+      <rect x="546" y="30" width="112" height="52" rx="5" fill="#FDF6E7" stroke="#B4700C" stroke-width="1.3"/>
+      <text x="602" y="50" font-size="10" font-weight="700" fill="#1a1a1a">런타임</text>
+      <text x="602" y="64" font-size="8.2" fill="#4a4a4a">CardDefinition</text>
+      <text x="602" y="75" font-size="8.2" fill="#7a7a7a">순수 C#</text>
+    </g>
+
+    <line x1="255" y1="86" x2="255" y2="112" stroke="#c0392b" stroke-width="1.5" marker-end="url(#dx)"/>
+    <text x="266" y="100" font-size="9" font-weight="700" fill="#c0392b">검증 실패 시 임포트 중단</text>
+
+    <rect x="2" y="120" width="656" height="52" rx="5" fill="#fdf2f0" stroke="#e0b4ac"/>
+    <g font-size="8.4" fill="#4a4a4a">
+      <text x="14" y="138"><tspan font-weight="700">behaviorId</tspan> — 등록된 화이트리스트와 대조. 목록에 없으면 실패</text>
+      <text x="14" y="152"><tspan font-weight="700">behaviorParams</tspan> — 키가 해당 behaviorId가 실제로 읽는 키인지 교차 검증(형식만 맞고 아무도 안 읽는 값을 잡는다)</text>
+      <text x="14" y="166"><tspan font-weight="700">불리언 컬럼</tspan> — 빈 값은 허용, 오타는 실패 · <tspan font-weight="700">설명 토큰</tspan> — 사거리를 바꾸면 카드 텍스트도 함께 바뀌도록 강제</text>
+    </g>
+  </svg>
+
+  <div class="block">
+    <div class="block-label">효과 디스패처 — 특수 카드만 핸들러를 가진다</div>
+    <div class="cols-37">
+      <div>
+        <pre style="font-size:7.5pt"><span class="c">// Combat/Runtime/CombatState.CardEffects.cs</span>
+defendHandlers =
+  ToEffectRefMap&lt;IDefendEffectHandler&gt;(<span class="k">new</span>[] {
+    <span class="k">new</span> ZeroThenDoubleDefendEffectHandler(),
+    <span class="k">new</span> HalfReflectDefendEffectHandler(),
+    <span class="k">new</span> CleanseBlockDefendEffectHandler(), ...
+  });</pre>
+      </div>
+      <div>
+        <p style="font-size:9pt">카드 종류는 이동 · 방어 · 유틸 · 정찰 · 공격 · 필드
+        <b>6가지 타입</b>으로 나뉘어 있고, 이와 별개로 <b>특수 카드 핸들러 24종</b>을 구현했습니다.</p>
+        <p style="font-size:9pt">일반 카드는 타입별 공통 경로를 그대로 타고,
+        규칙이 다른 카드만 <code>effectRef</code>로 자기 핸들러를 찾아갑니다.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-label">효과</div>
+    <table style="font-size:9pt">
+      <colgroup><col style="width:32%"><col></colgroup>
+      <tbody>
+        <tr><td><span style="color:var(--accent); font-weight:700">①</span> <b>밸런스 조정에 빌드 불필요</b></td>
+          <td>데이터 수정 시 CSV 행을 고치고 임포트하여 반영. 기획 담당 팀원이 수치와 설명 문구를 직접 수정</td></tr>
+        <tr><td><span style="color:var(--accent); font-weight:700">②</span> <b>카드 추가가 기존 카드에 영향 없음</b></td>
+          <td>기존에 없던 규칙일 때만 핸들러를 하나 추가하고 화이트리스트에 등록</td></tr>
+        <tr><td><span style="color:var(--accent); font-weight:700">②</span> <b>잘못된 데이터가 게임에 도달하지 않음</b></td>
+          <td>임포트가 먼저 실패. 규칙 자체도 임포터 테스트가 검증</td></tr>
+      </tbody>
+    </table>
   </div>
 
   <div class="result pin">
-    <b>설계 → 구현 → 최적화까지</b> — 이 암시야를 화면에 그리는 <code>MapVisibilityLit.shader</code>를
-    직접 작성했고(전체 11종 중 하나), 이후 그 셰이더의 조명 마스크가 프레임 비용의 병목으로
-    측정돼 <b>다음 페이지의 최적화 대상</b>이 됩니다.
+    <b>적용 범위</b> — 카드 · 몬스터 · 공격 패턴 · 보스 페이즈 · 상태이상 · 유물 · 소모품 · 상점가 · 보상 ·
+    VFX · 사운드 · 공격 타이밍까지 <b>CSV 원본 27개</b>가 같은 파이프라인을 씁니다.
   </div>
 
-  <div class="folio"><span>03 · 암시야 — 정보를 감추는 데이터 경계</span><span>06</span></div>
+  <div class="folio"><span>03 · 데이터 중심 구조 — CSV와 ScriptableObject</span><span>06</span></div>
  </div>
 </section>
 
 
-<!-- ================= p7 · 카드 04 최적화 ================= -->
-<section class="page">
+<!-- ================= 카드 · 성능 최적화 1 ================= -->
+<section class="page airy">
  <div class="page-inner">
   <div class="card-head">
     <span class="card-num">04</span>
-    <h2 class="card-title">계측 기반 성능 최적화</h2>
-    <span class="card-tag">Profiler · 작업 회피</span>
+    <h2 class="card-title">Unity Profiler 기반 성능 최적화 (1)</h2>
+    <span class="card-tag">진단 과정 · CASE 1 · CASE 2</span>
   </div>
 
   <p class="lede">
-    10배·31배 같은 숫자는 상수를 줄여서는 나오지 않습니다.
-    네 건 중 세 건은 <b>필요 없는 작업 자체를 제거해서</b> 얻은 개선입니다.
+    공모전 일정에 맞춰 기능을 우선하여 프로토타입을 제작한 후, 성능 최적화를 진행하였습니다.
+    그 당시 <b>턴이 전환될 때마다 눈에 띄는 속도 저하</b>가 있었고,
+    이를 해결하기 위해 여러 진단과 테스트를 진행했습니다.
   </p>
 
-  <table style="margin-bottom:11px">
-    <thead>
-      <tr><th style="width:31%">기법</th><th>대상</th><th class="num">전</th><th class="num">후</th><th class="num">개선</th></tr>
-    </thead>
-    <tbody>
-      <tr><td>더티 플래그 증분 갱신</td><td><code>Vis.ApplyVisibility</code></td><td class="num">59 ms/turn</td><td class="num">5.8 ms</td><td class="num gain">10×</td></tr>
-      <tr><td>입력 해시 기반 캐시</td><td><code>Vis.OverlayBuild</code></td><td class="num">10.4 ms/move</td><td class="num">2.1 ms</td><td class="num gain">4.9×</td></tr>
-      <tr><td>사전계산 LUT</td><td><code>Atlas.Vis.LightingMask</code></td><td class="num">1.97 ms/frame</td><td class="num">0.18 ms</td><td class="num gain">10.8×</td></tr>
-      <tr><td>씬 직렬화 데이터 감축</td><td>MainGameplay 씬 로드</td><td class="num">17,480 ms</td><td class="num">561 ms</td><td class="num gain">31×</td></tr>
-    </tbody>
-  </table>
-
-  <div class="cols">
-    <div>
-      <div class="block">
-        <div class="block-label">진단 — CPU인가 GPU인가를 먼저 갈랐다</div>
-        <pre style="font-size:7.8pt">steady    :  8.8 ms   draw call 205
+  <div class="block">
+    <div class="block-label">진단과 테스트</div>
+    <div class="cols-37">
+      <div>
+        <pre style="font-size:7.7pt">① 턴 전환 구간 측정
+steady    :  8.8 ms   draw call 205
 move_turn : 56.0 ms   draw call 210
-                      └ 그릴 양은 그대로, 시간만 6배</pre>
-        <p>드로우콜이 늘지 않았으니 렌더링이 아니라 턴 처리 C# 코드가 원인입니다.
-        이 갈림길을 건너뛰면 “느리니까 배칭을 늘리자”로 잘못 갑니다.</p>
-      </div>
+→ 그릴 양은 그대로, 시간만 6배
 
-      <div class="block">
-        <div class="block-label">특정 — ProfilerMarker를 계층으로 심었다</div>
-        <pre style="font-size:7.8pt">RefreshVisibilityHighlights        64 ms
-  ├ Vis.ApplyVisibility            <span class="k">59 ms</span>  ← 범인
-  ├ Vis.OverlayBuild                4 ms
-  └ Vis.OverlayApply              1.2 ms
-Pathfind                          4.8 ms
-RefreshHud                       0.01 ms</pre>
-        <p><code>ProfilerRecorder</code>로 이 수치를 코드에서 읽어 <b>테스트가 CSV로 자동 기록</b>합니다.
-        눈으로 보는 프로파일링은 재현도 기록도 안 되기 때문입니다.</p>
+② ProfilerMarker 로그
+[턴 전환 기준]
+  Vis.ApplyVisibility   <span class="k">59.0 ms</span> ← 암시야 처리
+  Vis.OverlayApply        1.2 ms
+  Pathfind                4.8 ms
+[이동 1회 기준]
+  Vis.OverlayBuild      <span class="k">10.4 ms</span> ← 몬스터 예고</pre>
       </div>
-    </div>
-
-    <div>
-      <div class="block">
-        <div class="block-label">대표 사례 — 증분 시야 갱신</div>
-        <p>몇 칸이 바뀌었든 <b>매 갱신마다 맵 전체의 안개 메시를 파괴하고 다시 만들고</b> 있었습니다.
-        게다가 갱신이 턴당 두 번 돌았습니다.</p>
-        <ul>
-          <li><b>셀 단위 더티</b> — 각 칸의 <code>(Exists, Visibility)</code>를 기억해 두고
-              직전과 달라진 칸만 재적용</li>
-          <li><b>버전 스탬프 얼리 아웃</b> — 호출자가 “바뀐 것 없음”을 알려주면
-              맵 전체 재스캔을 통째로 건너뜀. 선택만 바꾸는 갱신은 바뀐 칸이 0이므로
-              <b>낭비되던 두 번째 패스가 함께 사라졌습니다</b></li>
+      <div>
+        <ul style="font-size:9pt">
+          <li><b>① GPU vs CPU</b> — 가장 먼저 Profiler로 턴이 전환되는 타이밍의
+              <b>드로우콜과 지연 시간</b>을 측정했습니다. 드로우콜은 큰 변화가 없었으나
+              지연 시간만 <b>8.8 → 56.0 ms</b> 수준으로 폭발하는 것을 확인했고,
+              <b>CPU의 턴 처리 코드</b>가 원인이라고 파악했습니다.</li>
+          <li><b>② 어느 함수인가</b> — 턴 처리 경로에 지연 시간을 기록하는
+              <code>ProfilerMarker</code>를 제작했습니다. 로그를 확인한 결과
+              <b>암시야 처리 로직</b>과 <b>몬스터 예고 오버레이</b> 두 곳이 원인임을 확인했습니다.</li>
         </ul>
-      </div>
-
-      <div class="block">
-        <div class="block-label">계측 도구 자체가 틀렸던 일</div>
-        <p>측정 하네스가 이동 페이즈 제약 때문에 <b>실제 이동을 한 번만 유발</b>하고 있어
-        per-move 비용이 희석돼 있었습니다. 매 반복마다 인접 칸으로 이동하도록 고치자
-        진짜 병목(<code>OverlayBuild</code> 10.4 ms)이 드러났습니다.</p>
       </div>
     </div>
   </div>
 
-  <div class="cols" style="margin-top:11px">
-    <div>
-      <div class="block-label">턴당 프레임 비용 (move_turn, ms)</div>
-      <div class="bars">
-        <div class="bar-legend">
-          <span><i style="background:#d8d4cc"></i>이전</span>
-          <span><i style="background:var(--accent)"></i>이후</span>
-        </div>
-        <div class="bar-row">
-          <span class="bar-label">평균</span>
-          <span class="bar-track"><span class="bar-fill bar-before" style="width:62%"></span></span>
-          <span class="bar-val">56 ms</span>
-        </div>
-        <div class="bar-row">
-          <span class="bar-label"></span>
-          <span class="bar-track"><span class="bar-fill bar-after" style="width:20%"></span></span>
-          <span class="bar-val"><b>18 ms</b></span>
-        </div>
-        <div class="bar-row" style="margin-top:8px">
-          <span class="bar-label">p95</span>
-          <span class="bar-track"><span class="bar-fill bar-before" style="width:100%"></span></span>
-          <span class="bar-val">90 ms</span>
-        </div>
-        <div class="bar-row">
-          <span class="bar-label"></span>
-          <span class="bar-track"><span class="bar-fill bar-after" style="width:40%"></span></span>
-          <span class="bar-val"><b>36 ms</b></span>
-        </div>
-      </div>
-      <p style="font-size:8.4pt; color:var(--ink-2); margin-top:7px">
-        60fps 예산이 16.7 ms입니다. 이전에는 한 칸 움직일 때마다 예산을 3~5배 넘겨
-        <b>이동할 때마다 화면이 걸렸습니다.</b> 사람은 평균이 아니라 최악을 체감하므로 p95를 함께 봅니다.
-      </p>
+  <div class="case" style="margin-top:14px">
+    <div class="case-head">
+      <span class="case-num">CASE 1</span>
+      <span class="case-title">시야 갱신</span>
+      <span class="pill">더티 플래그 · 증분 갱신</span>
+      <span class="case-o">O(n) → O(k)</span>
+      <span class="case-gain">59 → <b>5.8 ms/turn</b></span>
     </div>
-    <div>
-      <div class="block-label">되돌린 최적화</div>
-      <p style="font-size:9pt">안개 청크 재생성(약 2.5 ms)을 줄이려고 Mesh·버퍼 재사용 풀을 넣었지만
-      <b>측정상 차이가 없어 되돌렸습니다.</b> GC 바운드가 아니라 compute 바운드였기 때문입니다.
-      객체를 자주 만드는 것처럼 보여도 원인이 다르면 처방이 듣지 않습니다.</p>
+    <div class="case-body">
+      <div>
+        <div class="block-label">초기 구현</div>
+        <p>시야가 바뀌면 <b>맵 전체의 안개 청크 메시를 파괴하고 다시 생성</b>했습니다.
+        스테이지 한 판의 타일이 <b>약 4,500칸</b>인데, 몇 칸이 바뀌었든 항상 전체를 훑습니다.
+        게다가 이 갱신이 턴당 두 번 돌고 있었습니다.</p>
+      </div>
+      <div>
+        <div class="block-label">측정</div>
+        <p><code>Vis.ApplyVisibility</code><br><b>59 ms/turn</b></p>
+        <p style="margin-top:3px">턴 전환 지연의 대부분</p>
+      </div>
+      <div>
+        <div class="block-label">조치</div>
+        <p>칸별 <code>(Exists, Visibility)</code>를 기억해 두고 <b>직전과 달라진 칸만 재적용</b>합니다.
+        안개 메시도 <b>미탐색·탐색 칸 집합이 실제로 바뀌었을 때만</b> 재생성합니다.</p>
+        <p style="margin-top:3px">여기에 <b>버전 스탬프</b>를 얹어, 호출자가 “바뀐 것 없음”을 알리면
+        맵 전체 재스캔을 통째로 건너뜁니다. 선택만 바꾸는 갱신은 바뀐 칸이 0이므로
+        <b>낭비되던 두 번째 패스가 함께 사라졌습니다.</b></p>
+        <p style="margin-top:3px">한 번 이동에 실제로 달라지는 칸은 시야 경계 부근 <b>수십 칸</b>입니다.
+        전체 칸 <b>n</b>을 매번 훑던 작업이 바뀐 칸 <b>k</b>에 비례하도록 바뀌었습니다.</p>
+      </div>
+    </div>
+  </div>
 
-      <div class="block-label" style="margin-top:9px">최적화가 바꾸지 않은 것</div>
-      <p style="font-size:9pt">카운터와 청크 멤버십은 저렴하므로 <b>일부러 전 셀에 대해 계속 계산</b>합니다.
-      공개 계약을 지키기 위해서입니다. 빨라졌어도 겉보기 동작이 바뀌면 회귀로 본다는 기준을 지켰습니다.</p>
+  <div class="case">
+    <div class="case-head">
+      <span class="case-num">CASE 2</span>
+      <span class="case-title">몬스터 예고 오버레이</span>
+      <span class="pill">메모이제이션 · 해시 무효화</span>
+      <span class="case-o">O(m) → O(1)</span>
+      <span class="case-gain">10.4 → <b>2.1 ms/move</b></span>
+    </div>
+    <div class="case-body">
+      <div>
+        <div class="block-label">초기 구현</div>
+        <p>몬스터의 이동 예고 · 공격 범위 · 추격 표시를 <b>화면을 갱신할 때마다 처음부터 다시 계산</b>했습니다.
+        같은 상황에서 같은 결과를 반복해 만들고 있었습니다.</p>
+      </div>
+      <div>
+        <div class="block-label">측정</div>
+        <p><code>Vis.OverlayBuild</code><br><b>10.4 ms/move</b></p>
+        <p style="margin-top:3px">한 칸 이동할 때마다 지불하는 비용</p>
+      </div>
+      <div>
+        <div class="block-label">조치</div>
+        <p>흩어져 있던 계산을 하나로 합치고, <b>결과를 캐시</b>했습니다.
+        다시 계산하는 조건은 <b>“상황이 실제로 바뀌었는가”</b> 하나입니다.</p>
+        <p style="margin-top:3px">여기서 ‘상황’은 몬스터 위치 · 예측 이동 · 공격 패턴 · 플레이어 위치 · 가시성을
+        <b>하나의 해시 값으로 압축</b>한 것입니다. 이전 해시와 같으면 계산을 건너뛰고 이전 결과를 그대로 씁니다.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="folio"><span>04 · Unity Profiler 기반 성능 최적화 (1)</span><span>07</span></div>
+ </div>
+</section>
+
+
+<!-- ================= 카드 · 성능 최적화 2 ================= -->
+<section class="page airy">
+ <div class="page-inner">
+  <div class="card-head">
+    <span class="card-num">05</span>
+    <h2 class="card-title">Unity Profiler 기반 성능 최적화 (2)</h2>
+    <span class="card-tag">CASE 3 · CASE 4 · 결과</span>
+  </div>
+
+  <div class="remeasure" style="margin-top:12px">
+    <b>재측정</b> — CASE 2까지 적용한 뒤, 정본 씬의 암시야 표현을
+    오버레이 틴트에서 <b>조명 마스크 모드</b>로 전환했습니다.
+    그러자 시야 갱신 비용이 다시 올라갔고, 마커를 따라가 원인을 좁혔습니다.
+  </div>
+
+  <div class="case">
+    <div class="case-head">
+      <span class="case-num">CASE 3</span>
+      <span class="case-title">조명 마스크 재빌드</span>
+      <span class="pill">좌표 변환 메모이제이션</span>
+      <span class="case-o">O(R·n) → O(n)</span>
+      <span class="case-gain">1.97 → <b>0.18 ms/frame</b></span>
+    </div>
+    <div class="case-body">
+      <div>
+        <div class="block-label">초기 구현</div>
+        <p><b>조명 마스크 방식</b> — 맵 위에 <b>검은 밝기 텍스처를 한 장 얹고</b>,
+        셰이더가 타일을 그릴 때 자기 위치의 픽셀을 읽어 색에 곱합니다.
+        픽셀이 검으면 그 타일은 어둡게 보입니다. 크기는 <b>128×128 = 픽셀 16,384개</b>입니다.</p>
+        <p style="margin-top:3px">시야는 한 칸 움직일 때마다 바뀌므로,
+        <b>이동할 때마다 픽셀 16,384개를 다시 채웁니다.</b></p>
+        <pre style="font-size:7.3pt; margin-top:4px">for i in 0..16383:
+  칸 = WorldToCoord(i)
+  pixels[i] = 밝기[칸]</pre>
+        <p style="margin-top:3px"><code>WorldToCoord</code>를 <b>매번 다시 계산</b>합니다.</p>
+      </div>
+      <div>
+        <div class="block-label">측정</div>
+        <p><code>Atlas.Vis.LightingMask</code><br><b>1.97 ms/frame</b></p>
+        <p style="margin-top:3px">60fps 예산 16.7 ms의 약 12%를
+        <b>마스크 재빌드 하나가</b> 쓰고 있었습니다.</p>
+      </div>
+      <div>
+        <div class="block-label">조치</div>
+        <p><b><code>WorldToCoord</code>를 메모이제이션했습니다.</b>
+        “픽셀 i는 어느 칸인가”의 답은 맵과 텍스처 크기가 고정이라
+        <b>게임 내내 같은 값</b>입니다. 매번 바뀌는 것은 그 칸의 밝기뿐입니다.</p>
+        <pre style="font-size:7.3pt; margin-top:4px"><span class="c">// 1회만 계산해 배열에 저장</span>
+칸번호[i] = WorldToCoord(i)
+
+<span class="c">// 이동할 때마다</span>
+pixels[i] = 밝기[칸번호[i]]</pre>
+        <p style="margin-top:4px">좌표 변환 횟수가 <b>이동할 때마다 16,384회</b>에서
+        <b>게임 전체 통틀어 16,384회</b>로 바뀝니다. 재빌드에 남는 것은 배열 조회뿐입니다.</p>
+        <p style="margin-top:3px">계산 결과를 바꾼 게 아니라 <b>계산 시점을 앞으로 옮긴 것</b>이라
+        출력 픽셀이 이전과 동일합니다.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="remeasure">
+    <b>별개 증상</b> — 위 셋은 전부 프레임 시간이었습니다.
+    CASE 4는 <b>플레이 시작 전 대기</b>로 관찰돼, 프레임 마커가 아니라
+    씬 파일 크기와 로드 시간을 직접 재는 것에서 출발했습니다.
+  </div>
+
+  <div class="case">
+    <div class="case-head">
+      <span class="case-num">CASE 4</span>
+      <span class="case-title">씬 로드</span>
+      <span class="pill">직렬화 데이터 감축</span>
+      <span class="case-o">Raycast → O(1) 역산</span>
+      <span class="case-gain">17.5초 → <b>0.56초</b></span>
+    </div>
+    <div class="case-body">
+      <div>
+        <div class="block-label">초기 구현</div>
+        <p>타일 클릭을 받으려고 <b>타일마다 콜라이더를 붙이고</b>,
+        마우스 위치에서 <b>Raycast</b>를 쏴 어떤 타일에 맞았는지 판정했습니다.
+        가장 단순하고 확실한 방법이었지만, 타일과 그 측면마다 콜라이더가 붙어
+        <b>맵 하나에 클릭 콜라이더 139,146개</b>가 씬 파일에 그대로 구워졌습니다.</p>
+      </div>
+      <div>
+        <div class="block-label">측정</div>
+        <p>씬 파일 <b>317 MB</b><br>로드 <b>17,480 ms</b></p>
+        <p style="margin-top:3px">플레이를 눌러도 <b>17.5초 동안 아무것도 시작되지 않는</b> 상태</p>
+      </div>
+      <div>
+        <div class="block-label">조치</div>
+        <p>콜라이더와 Raycast를 걷어내고, <b>스크린 좌표를 헥스 좌표로 직접 역산</b>해
+        클릭을 판정하도록 바꿨습니다. 물리 표면 없이 순수 계산으로 처리됩니다. 씬은 <b>50 MB</b>가 됐습니다.</p>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="block" style="margin-top:16px; max-width:74%">
+    <div class="block-label">턴당 프레임 비용 (move_turn, ms) — 60fps 예산 16.7 ms</div>
+    <div class="bars">
+      <div class="bar-legend">
+        <span><i style="background:#d8d4cc"></i>이전</span>
+        <span><i style="background:var(--accent)"></i>이후</span>
+      </div>
+      <div class="bar-row">
+        <span class="bar-label">평균</span>
+        <span class="bar-track"><span class="bar-fill bar-before" style="width:62%"></span></span>
+        <span class="bar-val">56 ms</span>
+      </div>
+      <div class="bar-row">
+        <span class="bar-label"></span>
+        <span class="bar-track"><span class="bar-fill bar-after" style="width:20%"></span></span>
+        <span class="bar-val"><b>18 ms</b></span>
+      </div>
+      <div class="bar-row" style="margin-top:6px">
+        <span class="bar-label">p95</span>
+        <span class="bar-track"><span class="bar-fill bar-before" style="width:100%"></span></span>
+        <span class="bar-val">90 ms</span>
+      </div>
+      <div class="bar-row">
+        <span class="bar-label"></span>
+        <span class="bar-track"><span class="bar-fill bar-after" style="width:40%"></span></span>
+        <span class="bar-val"><b>36 ms</b></span>
+      </div>
     </div>
   </div>
 
   <div class="result pin">
     <b>결과</b> — 턴 이동 시 프레임 <b>56 → 18 ms</b>(p95 90 → 36 ms), 씬 로드 <b>17.5초 → 0.56초</b>.
-    개선은 전부 회귀 게이트로 잠가 되돌아가지 않게 했습니다(다음 페이지).
+    개선은 전부 회귀 게이트로 잠가 되돌아가지 않게 했습니다.
   </div>
 
-  <div class="folio"><span>04 · 계측 기반 성능 최적화</span><span>07</span></div>
+  <div class="folio"><span>05 · Unity Profiler 기반 성능 최적화 (2)</span><span>08</span></div>
  </div>
 </section>
 
 
-<!-- ================= p8 · 카드 05 회귀 게이트 + 리팩토링 ================= -->
-<section class="page">
+<!-- ================= p11 · 카드 08 Rainbow War 영역 알고리즘 ================= -->
+<section class="page airy">
+
  <div class="page-inner">
   <div class="card-head">
-    <span class="card-num">05</span>
-    <h2 class="card-title">회귀 게이트와 10,690줄 God Object 분해</h2>
-    <span class="card-tag">테스트 인프라 · 리팩토링</span>
+    <h2 class="card-title">Rainbow War</h2>
+    <span class="card-tag">Unity 2020.3 · Android · Photon PUN2</span>
   </div>
 
   <p class="lede">
-    성능 회귀는 기능 버그처럼 터지지 않고 <b>조용히 쌓입니다.</b>
-    그래서 렌더 복잡도를 커밋된 기준값과 대조하는 게이트를 만들어, 기계가 감시하게 했습니다.
+    슈팅과 <b>영역 점령(땅따먹기)</b>을 결합한 <b>모바일 멀티플레이 TPS</b>입니다.
+    자기 영역 밖으로 나가 선을 긋고 돌아오면 그 선이 감싼 만큼 땅이 넓어지고,
+    상대 영역을 가로지르면 그만큼 상대 땅을 깎습니다. 제한 시간 안에 더 넓게 칠한 팀이 이깁니다.
+    선을 긋는 동안은 무방비여서, <b>총을 쏘는 시간과 땅을 넓히는 시간을 맞바꾸는 것</b>이 이 게임의 축입니다.
+    7인 팀에서 <b>개발 리더</b>를 맡아 <b>실시간 멀티플레이 전반과 영역 시스템 전체</b>를 담당했습니다.
   </p>
 
-  <div class="cols">
+  <div class="figs2" style="margin-bottom:10px; gap:10px">
+    <figure><img src="assets/print/파란색 영역 땅따먹기 장면.jpg" alt="Rainbow War 영역 확장 플레이" style="height:48mm; object-fit:cover">
+      <figcaption>궤적을 긋는 중 — 빨강이 자기 영역, 파랑이 상대 영역. 긋는 동안은 무방비다</figcaption></figure>
+    <figure><img src="assets/print/땅따먹기 장면.jpg" alt="확정된 영역 메시" style="height:48mm; object-fit:cover">
+      <figcaption>확정된 폴리곤을 삼각분할해 만든 영역 메시. 상단은 양 팀 점유율과 남은 시간</figcaption></figure>
+  </div>
+
+  <div class="cols" style="margin-bottom:11px">
     <div>
-      <div class="block">
-        <div class="block-label">무엇을 게이트로 삼을 것인가</div>
-        <p>프레임 시간은 기계마다 다릅니다. 이걸 게이트로 쓰면 코드가 멀쩡한데 빨간불이 뜨고,
-        곧 <b>사람들이 그 테스트를 무시하기 시작합니다. 무시당하는 게이트는 없는 것보다 나쁩니다.</b></p>
-        <table>
-          <thead><tr><th>지표</th><th>성질</th><th>운용</th></tr></thead>
-          <tbody>
-            <tr><td>renderer · 정점 · 삼각형 수</td><td>결정론적</td><td><b>정확히 일치 게이트</b></td></tr>
-            <tr><td>프레임 시간 · ms 비용</td><td>기계 의존</td><td>추세 기록만</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="block">
-        <div class="block-label">골든 베이스라인</div>
-        <p>셀 {1,000·5,000·10,000} × 프롭 {25·100·250} × 배칭 {on·off} = <b>18개 조합</b>의
-        렌더 복잡도를 커밋된 JSON과 대조합니다. 파일이 없어도 실패하는 fail-closed 게이트입니다.</p>
-      </div>
-
-      <div class="block">
-        <div class="block-label">배칭이 “지금 작동 중”임을 증명하는 테스트</div>
-        <pre style="font-size:7.7pt">ChunkingReducesRenderersWithoutChangingGeometry
-  배칭 OFF / ON 을 각각 렌더한 뒤
-  · renderer 가 10배 이상 줄었는가?   (작동 중인가)
-  · 정점·삼각형은 완전히 동일한가?     (내용이 같은가)</pre>
-        <p>배칭은 조건이 어긋나면 <b>아무 에러 없이 폴백</b>해 조용히 느려집니다.
-        그래서 테스트 픽스처를 일부러 조건에 맞춰 실제 배칭 경로를 타게 만들어,
-        지금 실제로 작동 중이라는 사실을 보증합니다.</p>
-      </div>
+      <div class="block-label">프로젝트</div>
+      <dl class="kv">
+        <dt>팀</dt><dd>아주대 게임 개발 동아리 · 7인</dd>
+        <dt>기간</dt><dd>2021.04 ~ 2022.04</dd>
+        <dt>엔진</dt><dd>Unity 2020.3.26f1</dd>
+        <dt>플랫폼</dt><dd>Android · 가로 고정</dd>
+        <dt>네트워크</dt><dd>Photon PUN2 v2.40 (Photon Cloud)</dd>
+        <dt>성과</dt><dd>교내 동아리 시연회 출품</dd>
+        <dt>소스</dt><dd><a href="https://github.com/binnini/Rainbow-War"><b>github.com/binnini/Rainbow-War</b></a></dd>
+      </dl>
     </div>
-
     <div>
-      <div class="block">
-        <div class="block-label">God Object 분해</div>
-        <p><code>MapCombatController.cs</code>가 <b>10,690줄 단일 클래스</b>까지 커졌습니다
-        (멤버 선언 766건, <code>[SerializeField]</code> 148건).
-        1개월 공모전 일정에서 기능을 우선했던 결과이고, 개발이 이어지면서 갚기 시작했습니다.</p>
-        <ul>
-          <li>멤버 766건을 <b>어느 seam에 속하는지 분류표부터</b> 만들고 시작</li>
-          <li>가장 작은 seam(<code>ICombatAudioHost</code>, 멤버 6개)부터 단계별로</li>
-          <li>껍데기는 남기고 속만 옮기는 <b>strangler 방식</b></li>
-        </ul>
-      </div>
-
-      <div class="block">
-        <div class="block-label">Unity라서 지켜야 했던 제약</div>
-        <p>씬과 프리팹은 코드를 문자열·GUID로 참조합니다. 이름을 바꾸면
-        <b>컴파일은 되는데 실행하면 null</b>이 됩니다.</p>
-        <ul>
-          <li><code>[SerializeField]</code> 148건은 <b>본체에 잔류</b> — 인스펙터 값과 참조 보존.
-              어댑터에는 값·델리게이트만 주입</li>
-          <li><code>ICombatAudioHost</code> 구현을 인터페이스 목록에서 제거하지 않음 —
-              씬의 MonoBehaviour를 자동 탐색하는 경로가 깨지기 때문</li>
-        </ul>
-      </div>
-
-      <div class="block">
-        <div class="block-label">테스트가 이미 빨간불이었을 때</div>
-        <p>리팩토링 시작 시점의 EditMode 베이스라인은 <b>117개 실패</b> 상태였습니다.
-        “전부 초록으로 만들고 시작”은 현실적으로 영원히 시작하지 못한다는 뜻이라,
-        게이트를 <b>“신규 실패 0”</b>으로 정의하고 단계마다
-        <i>실패 집합이 늘지 않았음</i>을 확인하며 전진했습니다.</p>
-      </div>
+      <div class="block-label">담당 범위</div>
+      <dl class="kv" style="gap:4px 10px">
+        <dt>영역</dt><dd>확장 · 침탈 알고리즘, 궤적 기록, 런타임 메시 생성 <b>전담</b></dd>
+        <dt>멀티</dt><dd>로비 · 룸 매칭, 상태 동기화, 호스트 권위 판정</dd>
+        <dt>인게임</dt><dd>시작 배리어 · 타이머 · 점수 · 사망 · 리스폰</dd>
+        <dt>UI/HUD</dt><dd>체력바 · 이름표 추적, 팀 점수판, 룸 플레이어 리스트</dd>
+        <dt>입력</dt><dd>PC 즉시 입력을 모바일 토글 상태 입력으로 재설계</dd>
+      </dl>
+      <p style="font-size:8.4pt; color:var(--ink-3); margin-top:4px">
+        사격 · 조준 · 총알은 팀원이 담당했습니다.</p>
     </div>
   </div>
 
-  <div class="note" style="margin-top:11px">
-    <b>씬 수술 — 재발 방지가 본체다</b><br>
-    타일을 클릭하려고 콜라이더를 타일마다 붙여 두었더니 <code>MainGameplay</code> 씬에
-    <b>클릭 콜라이더 139,146개</b>가 구워져 씬 파일이 317 MB, 로드가 17.5초까지 갔습니다.
-    콜라이더 대신 스크린 좌표를 헥스 좌표로 직접 변환하는 방식(<code>TryScreenToHex</code>)으로 바꾸고
-    구워진 오브젝트를 전부 삭제해 <b>50 MB · 0.56초</b>가 됐습니다.
-    중요한 건 그다음입니다 — 골든 베이스라인에 <code>clickColliders: 0</code>을 잠가
-    <b>콜라이더 생성 경로가 되살아나면 게이트가 실패</b>하게 했고,
-    실제 씬·실제 카메라로 좌표 변환을 왕복 검증하는 테스트를 함께 넣었습니다.
+  <a class="trailer" style="margin-top:0; margin-bottom:11px" href="https://youtu.be/l2qebtkdKGU">
+    <img class="trailer-qr" src="assets/qr-rainbowwar.svg" alt="Rainbow War 플레이 영상 QR 코드">
+    <span>
+      <span class="trailer-label">Rainbow War 플레이 영상</span><br>
+      <span class="trailer-url">youtu.be/l2qebtkdKGU</span>
+    </span>
+  </a>
+
+  <div class="block">
+    <div class="block-label">직접 설계 · 구현한 시스템</div>
+    <table style="font-size:8.8pt">
+      <tbody>
+        <tr><td style="width:20%"><b>영역 확장</b></td>
+          <td>궤적이 나눈 두 갈래로 조각 2개를 만들고 넓이가 넓은 쪽을 채택.
+              폴리곤을 합치는 기하 연산 없이 넓이 비교만으로 확장을 끝냄</td></tr>
+        <tr><td><b>영역 침탈</b></td>
+          <td>영역을 조각 목록으로 표현하고, 자를 때는 어느 쪽도 버리지 않은 뒤
+              마지막에 조각별 소유권을 한 번씩 판정</td></tr>
+        <tr><td><b>선 밟기 판정</b></td>
+          <td>렌더링 전용인 궤적 위에 충돌체를 간격 제어하며 부착.
+              최근 2개를 비활성으로 둬 자기 꼬리 오탐 차단</td></tr>
+        <tr><td><b>영역 동기화</b></td>
+          <td>계산은 소유 클라이언트에서만 수행하고,
+              확정된 정점 배열만 폐쇄 · 침탈 시점에 전송</td></tr>
+        <tr><td><b>시작 시점 동기화</b></td>
+          <td>서버 동기 시계의 원점을 룸 프로퍼티로 공유하고,
+              오브젝트 생성 완료 배리어로 초기화 순서 보장</td></tr>
+      </tbody>
+    </table>
   </div>
 
-  <div class="result pin">
-    <b>결과</b> — 본체 10,690줄 → 2,233줄 + 관심사별 분할, 오디오·카메라는 별도 클래스로 추출.
-    베이스라인은 <b>117 실패에서 925 pass / 0 fail</b>로 초록이 됐습니다.
-    다만 <code>CombatState.cs</code>는 아직 6,907줄로 남아 있어 분해가 진행 중입니다.
-  </div>
-
-  <div class="folio"><span>05 · 회귀 게이트와 God Object 분해</span><span>08</span></div>
+  <div class="folio"><span>Rainbow War</span><span>09</span></div>
  </div>
 </section>
 
 
-<!-- ================= p9 · 이전 프로젝트 ================= -->
+<!-- ================= 카드 06 영역 확장·침탈 ================= -->
 <section class="page">
+
  <div class="page-inner">
   <div class="card-head">
     <span class="card-num">06</span>
-    <h2 class="card-title">이전 프로젝트 — Rainbow War · 설화 · Match &amp; Mist</h2>
-    <span class="card-tag">2021 ~ 2022 · 대학 팀 프로젝트</span>
+    <h2 class="card-title">Rainbow War — 영역 확장·침탈 알고리즘</h2>
+    <span class="card-tag">폴리곤 기하 · 런타임 메시</span>
   </div>
 
   <p class="lede">
-    대학 동아리와 게임잼에서 만든 세 편입니다. 기억결에서 쓰는 방법들 —
-    자동화 테스트, 데이터 분리, 제한 시야 — 는 이 프로젝트들에서 겪은 문제에서 출발했습니다.
+    영역은 플레이어가 궤적을 완성할 때마다 갱신됩니다. 이때 자신의 영역이 넓어지는 <b>확장</b>과
+    상대방의 영역을 제거하는 <b>침탈</b> 두 가지 효과가 일어납니다. 여기서
+    <b>① 확장 시 어느 갈래를 남길지</b>, <b>② 침탈 결과가 여러 조각으로 갈라지는 것</b> 둘을 풀어야 했습니다.
+  </p>
+
+  <div class="case" style="margin-bottom:9px">
+    <div class="case-head">
+      <span class="case-num">① 확장</span>
+      <span class="case-title">둘레 두 갈래 중 어느 쪽을 남길 것인가</span>
+      <span class="case-gain"><span class="case-o">폴리곤 합집합 연산 없음</span></span>
+    </div>
+    <svg viewBox="0 0 660 178" style="width:100%; height:auto" role="img" aria-label="영역 확장 알고리즘 다이어그램">
+      <defs><marker id="rw-ah" markerWidth="9" markerHeight="9" refX="7.5" refY="3.2" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L7.5,3.2 L0,6.4 z" fill="#B4700C"/></marker></defs>
+      <circle cx="100" cy="62" r="32" fill="#f7f7f5" stroke="#c9c9c9" stroke-width="1.3"/>
+      <path d="M73.8,80.4 L70.6,91.4 L69.2,101.3 L69.4,110.1 L71.1,117.6 L74.1,124 L78,129.3 L82.8,133.3 L88.2,136.3 L94,138 L100,138.6 L106,138 L111.8,136.3 L117.2,133.3 L122,129.3 L125.9,124 L128.9,117.6 L130.6,110.1 L130.8,101.3 L129.4,91.4 L126.2,80.4" fill="none" stroke="#B4700C" stroke-width="2.2" stroke-linecap="round"/>
+      <circle cx="73.8" cy="80.4" r="3.4" fill="#B4700C"/>
+      <text x="60.8" y="84.4" font-size="10.5" font-weight="700" fill="#B4700C">A</text>
+      <circle cx="126.2" cy="80.4" r="3.4" fill="#B4700C"/>
+      <text x="135.2" y="84.4" font-size="10.5" font-weight="700" fill="#B4700C">B</text>
+      <text x="100" y="16" text-anchor="middle" font-size="10" fill="#7a7a7a">기존 영역과 궤적</text>
+      <text x="100" y="158" text-anchor="middle" font-size="10" fill="#4a4a4a">A에서 나가 B로 복귀</text>
+      <text x="100" y="171" text-anchor="middle" font-size="9" fill="#7a7a7a">둘레가 두 갈래로 나뉜다</text>
+      <line x1="192" y1="72" x2="222" y2="72" stroke="#B4700C" stroke-width="1.5" marker-end="url(#rw-ah)"/>
+      <path d="M266.7,84.9 L268.2,86.9 L269.9,88.7 L271.8,90.3 L273.8,91.8 L276,93.1 L278.3,94.1 L280.6,94.9 L283,95.5 L285.5,95.9 L288,96 L290.5,95.9 L293,95.5 L295.4,94.9 L297.7,94.1 L300,93.1 L302.2,91.8 L304.2,90.3 L306.1,88.7 L307.8,86.9 L309.3,84.9 L309.3,84.9 L311.9,93.9 L313.1,101.9 L312.8,109 L311.5,115.2 L309.1,120.4 L305.9,124.7 L302,128 L297.6,130.3 L292.9,131.8 L288,132.2 L283.1,131.8 L278.4,130.3 L274,128 L270.1,124.7 L266.9,120.4 L264.5,115.2 L263.2,109 L262.9,101.9 L264.1,93.9 L266.7,84.9 Z" fill="#f7f7f5" stroke="#c9c9c9" stroke-width="1.4"/>
+      <text x="288" y="158" text-anchor="middle" font-size="10" font-weight="700" fill="#7a7a7a">조각 ㉮</text>
+      <text x="288" y="171" text-anchor="middle" font-size="9" fill="#7a7a7a">좁다</text>
+      <path d="M374.7,76.9 L373.2,74.5 L372,71.9 L371,69.3 L370.4,66.5 L370.1,63.7 L370,60.9 L370.3,58 L370.9,55.3 L371.8,52.6 L372.9,50 L374.4,47.6 L376.1,45.3 L378,43.2 L380.2,41.4 L382.5,39.8 L385,38.4 L387.6,37.4 L390.4,36.6 L393.2,36.2 L396,36 L398.8,36.2 L401.6,36.6 L404.4,37.4 L407,38.4 L409.5,39.8 L411.8,41.4 L414,43.2 L415.9,45.3 L417.6,47.6 L419.1,50 L420.2,52.6 L421.1,55.3 L421.7,58 L422,60.9 L421.9,63.7 L421.6,66.5 L421,69.3 L420,71.9 L418.8,74.5 L417.3,76.9 L417.3,76.9 L419.9,85.9 L421.1,93.9 L420.8,101 L419.5,107.2 L417.1,112.4 L413.9,116.7 L410,120 L405.6,122.3 L400.9,123.8 L396,124.2 L391.1,123.8 L386.4,122.3 L382,120 L378.1,116.7 L374.9,112.4 L372.5,107.2 L371.2,101 L370.9,93.9 L372.1,85.9 L374.7,76.9 Z" fill="#FDF6E7" stroke="#B4700C" stroke-width="1.4"/>
+      <text x="396" y="158" text-anchor="middle" font-size="10" font-weight="700" fill="#B4700C">조각 ㉯</text>
+      <text x="396" y="171" text-anchor="middle" font-size="9" fill="#7a7a7a">넓다</text>
+      <text x="342" y="16" text-anchor="middle" font-size="10" fill="#7a7a7a">각 갈래에 궤적을 이어 조각 2개</text>
+      <line x1="458" y1="72" x2="488" y2="72" stroke="#B4700C" stroke-width="1.5" marker-end="url(#rw-ah)"/>
+      <text x="473" y="62" text-anchor="middle" font-size="9" font-weight="700" fill="#B4700C">넓이 비교</text>
+      <path d="M549.8,80.4 L547.9,77.4 L546.4,74.2 L545.3,71 L544.5,67.6 L544.1,64.1 L544,60.6 L544.4,57.1 L545.1,53.7 L546.2,50.4 L547.6,47.2 L549.4,44.2 L551.5,41.4 L553.9,38.9 L556.5,36.6 L559.4,34.6 L562.5,33 L565.7,31.7 L569.1,30.8 L572.5,30.2 L576,30 L579.5,30.2 L582.9,30.8 L586.3,31.7 L589.5,33 L592.6,34.6 L595.5,36.6 L598.1,38.9 L600.5,41.4 L602.6,44.2 L604.4,47.2 L605.8,50.4 L606.9,53.7 L607.6,57.1 L608,60.6 L607.9,64.1 L607.5,67.6 L606.7,71 L605.6,74.2 L604.1,77.4 L602.2,80.4 L602.2,80.4 L605.4,91.4 L606.8,101.3 L606.6,110.1 L604.9,117.6 L601.9,124 L598,129.3 L593.2,133.3 L587.8,136.3 L582,138 L576,138.6 L570,138 L564.2,136.3 L558.8,133.3 L554,129.3 L550.1,124 L547.1,117.6 L545.4,110.1 L545.2,101.3 L546.6,91.4 L549.8,80.4 Z" fill="#FDF6E7" stroke="#B4700C" stroke-width="1.7"/>
+      <text x="576" y="16" text-anchor="middle" font-size="10" fill="#7a7a7a">넓은 쪽을 채택</text>
+      <text x="576" y="158" text-anchor="middle" font-size="10" fill="#4a4a4a">기존 영역 + 새로 감싼 땅</text>
+      <text x="576" y="171" text-anchor="middle" font-size="9" fill="#7a7a7a">합치는 연산 없이 같은 결과</text>
+      </svg>
+    <div class="cols" style="margin-top:5px">
+      <div>
+        <p style="font-size:9pt">궤적이 영역을 떠난 A와 되돌아온 B가 기존 폴리곤 둘레를
+        <b>두 갈래로 나눕니다.</b> 양 끝점을 가장 가까운 정점에 스냅한 뒤,
+        각 갈래에 궤적을 이어 붙여 조각 2개를 만듭니다.</p>
+        <p style="font-size:9pt">두 조각 중 <b>넓은 쪽이 곧 ‘기존 영역 + 새로 감싼 땅’</b>입니다.
+        궤적은 영역 밖에 있을 때만 기록되므로, 새로 감싼 땅은 기존 영역과 겹치지 않습니다.
+        그래서 <b>두 폴리곤을 합치는 기하 연산 없이 넓이만 비교</b>해 확장을 끝냅니다.</p>
+      </div>
+      <div>
+        <pre style="font-size:7.6pt"><span class="c">// Trail_Action.ExpandArea</span>
+TrailArea.TryCut(areaPieces[i], trail,
+                 <span class="k">out</span> a, <span class="k">out</span> b);
+areaPieces[i] = GetPolygonArea(a)
+             &gt;= GetPolygonArea(b) ? a : b;</pre>
+      </div>
+    </div>
+  </div>
+
+  <div class="case" style="margin-bottom:9px">
+    <div class="case-head">
+      <span class="case-num">② 침탈</span>
+      <span class="case-title">영역이 상대에 의해 잘리면, 잘린 만큼 복수의 폴리곤으로 나눈다</span>
+    </div>
+    <svg viewBox="0 0 660 202" style="width:100%; height:auto" role="img" aria-label="영역 침탈 알고리즘 다이어그램">
+      <rect x="22" y="6" width="11" height="11" rx="2" fill="#FDF6E7" stroke="#B4700C" stroke-width="1.2"/>
+      <text x="38" y="15.5" font-size="9.4" fill="#4a4a4a">내 영역 · 궤적</text>
+      <rect x="150" y="6" width="11" height="11" rx="2" fill="#E9EEF3" stroke="#6F7F8D" stroke-width="1.2"/>
+      <text x="166" y="15.5" font-size="9.4" fill="#4a4a4a">상대 영역</text>
+      <rect x="252" y="6" width="11" height="11" rx="2" fill="#F2DFB6" stroke="#B4700C" stroke-width="1.2"/>
+      <text x="268" y="15.5" font-size="9.4" fill="#4a4a4a">뺏은 영역</text>
+      <circle cx="110" cy="110" r="40" fill="#E9EEF3"/>
+      <path d="M56,56 L56,56 L56.1,60.3 L56.3,64.1 L56.6,67.6 L57.1,70.6 L57.8,73.3 L58.5,75.7 L59.3,77.8 L60.3,79.5 L61.3,81 L62.5,82.2 L63.7,83.3 L65.1,84.1 L66.5,84.7 L68,85.2 L69.5,85.5 L71.1,85.8 L72.8,85.9 L74.5,86 L76.2,86 L78,86 L142,86 L142,86 L143.8,86 L145.5,86 L147.2,85.9 L148.9,85.8 L150.5,85.5 L152,85.2 L153.5,84.7 L154.9,84.1 L156.3,83.3 L157.5,82.2 L158.7,81 L159.7,79.5 L160.7,77.8 L161.5,75.7 L162.2,73.3 L162.9,70.6 L163.4,67.6 L163.7,64.1 L163.9,60.3 L164,56 L164,56 Z" fill="#FDF6E7"/>
+      <path d="M78,86 L80.8,82.7 L84,79.6 L87.4,77 L91.1,74.7 L95.1,72.9 L99.2,71.5 L103.5,70.5 L107.8,70.1 L112.2,70.1 L116.5,70.5 L120.8,71.5 L124.9,72.9 L128.9,74.7 L132.6,77 L136,79.6 L139.2,82.7 L142,86 Z" fill="#F2DFB6"/>
+      <path d="M142,86 L144.3,89.5 L146.3,93.2 L147.9,97.1 L149,101.2 L149.7,105.4 L150,109.6 L149.8,113.8 L149.2,117.9 L148.1,122 L146.7,126 L144.8,129.7 L142.5,133.3 L139.9,136.6 L136.9,139.6 L133.7,142.3 L130.1,144.6 L126.4,146.5 L122.4,148 L118.4,149.1 L114.2,149.8 L110,150 L105.8,149.8 L101.6,149.1 L97.6,148 L93.6,146.5 L89.9,144.6 L86.3,142.3 L83.1,139.6 L80.1,136.6 L77.5,133.3 L75.2,129.7 L73.3,126 L71.9,122 L70.8,117.9 L70.2,113.8 L70,109.6 L70.3,105.4 L71,101.2 L72.1,97.1 L73.7,93.2 L75.7,89.5 L78,86" fill="none" stroke="#6F7F8D" stroke-width="1.4"/>
+      <path d="M78,86 L80.8,82.7 L84,79.6 L87.4,77 L91.1,74.7 L95.1,72.9 L99.2,71.5 L103.5,70.5 L107.8,70.1 L112.2,70.1 L116.5,70.5 L120.8,71.5 L124.9,72.9 L128.9,74.7 L132.6,77 L136,79.6 L139.2,82.7 L142,86" fill="none" stroke="#B4700C" stroke-width="1.3"/>
+      <rect x="56" y="32" width="108" height="24" rx="5" fill="#FDF6E7" stroke="#B4700C" stroke-width="1.4"/>
+      <text x="110" y="48" text-anchor="middle" font-size="9.6" font-weight="700" fill="#B4700C">내 영역</text>
+      <path d="M56,56 L56,56 L56.1,60.3 L56.3,64.1 L56.6,67.6 L57.1,70.6 L57.8,73.3 L58.5,75.7 L59.3,77.8 L60.3,79.5 L61.3,81 L62.5,82.2 L63.7,83.3 L65.1,84.1 L66.5,84.7 L68,85.2 L69.5,85.5 L71.1,85.8 L72.8,85.9 L74.5,86 L76.2,86 L78,86 L142,86 L142,86 L143.8,86 L145.5,86 L147.2,85.9 L148.9,85.8 L150.5,85.5 L152,85.2 L153.5,84.7 L154.9,84.1 L156.3,83.3 L157.5,82.2 L158.7,81 L159.7,79.5 L160.7,77.8 L161.5,75.7 L162.2,73.3 L162.9,70.6 L163.4,67.6 L163.7,64.1 L163.9,60.3 L164,56" fill="none" stroke="#B4700C" stroke-width="2.2" stroke-linecap="round"/>
+      <text x="110" y="82.0" text-anchor="middle" font-size="9.6" font-weight="700" fill="#B4700C">뺏김</text>
+      <text x="110" y="122.0" text-anchor="middle" font-size="9.6" font-weight="700" fill="#6F7F8D">유지</text>
+      <text x="110" y="180" text-anchor="middle" font-size="10" fill="#4a4a4a">얕게 스치면 좁은 쪽이 뺏긴다</text>
+      <text x="110" y="193" text-anchor="middle" font-size="9" fill="#7a7a7a">뺏기는 넓이가 작다</text>
+      <circle cx="330" cy="110" r="40" fill="#E9EEF3"/>
+      <path d="M276,56 L276,56 L276,66.3 L276.2,75.5 L276.4,83.8 L276.7,91.1 L277.2,97.6 L277.7,103.3 L278.3,108.2 L279,112.4 L279.8,116 L280.6,119 L281.6,121.4 L282.7,123.4 L283.8,124.9 L285,126.1 L286.4,126.9 L287.8,127.4 L289.3,127.8 L290.9,127.9 L292.5,128 L294.3,128 L365.7,128 L365.7,128 L367.5,128 L369.1,127.9 L370.7,127.8 L372.2,127.4 L373.6,126.9 L375,126.1 L376.2,124.9 L377.3,123.4 L378.4,121.4 L379.4,119 L380.2,116 L381,112.4 L381.7,108.2 L382.3,103.3 L382.8,97.6 L383.3,91.1 L383.6,83.8 L383.8,75.5 L384,66.3 L384,56 L384,56 Z" fill="#FDF6E7"/>
+      <path d="M294.3,128 L292.6,124.1 L291.3,120 L290.4,115.8 L290,111.5 L290.1,107.2 L290.6,103 L291.6,98.8 L293,94.7 L294.9,90.9 L297.1,87.2 L299.7,83.8 L302.7,80.8 L306,78 L309.6,75.6 L313.4,73.6 L317.4,72.1 L321.5,70.9 L325.7,70.2 L330,70 L334.3,70.2 L338.5,70.9 L342.6,72.1 L346.6,73.6 L350.4,75.6 L354,78 L357.3,80.8 L360.3,83.8 L362.9,87.2 L365.1,90.9 L367,94.7 L368.4,98.8 L369.4,103 L369.9,107.2 L370,111.5 L369.6,115.8 L368.7,120 L367.4,124.1 L365.7,128 Z" fill="#F2DFB6"/>
+      <path d="M365.7,128 L363.6,131.6 L361.2,135.1 L358.4,138.2 L355.3,141 L351.9,143.5 L348.2,145.6 L344.4,147.3 L340.4,148.6 L336.3,149.5 L332.1,149.9 L327.9,149.9 L323.7,149.5 L319.6,148.6 L315.6,147.3 L311.8,145.6 L308.1,143.5 L304.7,141 L301.6,138.2 L298.8,135.1 L296.4,131.6 L294.3,128" fill="none" stroke="#6F7F8D" stroke-width="1.4"/>
+      <path d="M294.3,128 L292.6,124.1 L291.3,120 L290.4,115.8 L290,111.5 L290.1,107.2 L290.6,103 L291.6,98.8 L293,94.7 L294.9,90.9 L297.1,87.2 L299.7,83.8 L302.7,80.8 L306,78 L309.6,75.6 L313.4,73.6 L317.4,72.1 L321.5,70.9 L325.7,70.2 L330,70 L334.3,70.2 L338.5,70.9 L342.6,72.1 L346.6,73.6 L350.4,75.6 L354,78 L357.3,80.8 L360.3,83.8 L362.9,87.2 L365.1,90.9 L367,94.7 L368.4,98.8 L369.4,103 L369.9,107.2 L370,111.5 L369.6,115.8 L368.7,120 L367.4,124.1 L365.7,128" fill="none" stroke="#B4700C" stroke-width="1.3"/>
+      <rect x="276" y="32" width="108" height="24" rx="5" fill="#FDF6E7" stroke="#B4700C" stroke-width="1.4"/>
+      <text x="330" y="48" text-anchor="middle" font-size="9.6" font-weight="700" fill="#B4700C">내 영역</text>
+      <path d="M276,56 L276,56 L276,66.3 L276.2,75.5 L276.4,83.8 L276.7,91.1 L277.2,97.6 L277.7,103.3 L278.3,108.2 L279,112.4 L279.8,116 L280.6,119 L281.6,121.4 L282.7,123.4 L283.8,124.9 L285,126.1 L286.4,126.9 L287.8,127.4 L289.3,127.8 L290.9,127.9 L292.5,128 L294.3,128 L365.7,128 L365.7,128 L367.5,128 L369.1,127.9 L370.7,127.8 L372.2,127.4 L373.6,126.9 L375,126.1 L376.2,124.9 L377.3,123.4 L378.4,121.4 L379.4,119 L380.2,116 L381,112.4 L381.7,108.2 L382.3,103.3 L382.8,97.6 L383.3,91.1 L383.6,83.8 L383.8,75.5 L384,66.3 L384,56" fill="none" stroke="#B4700C" stroke-width="2.2" stroke-linecap="round"/>
+      <text x="330" y="103.0" text-anchor="middle" font-size="9.6" font-weight="700" fill="#B4700C">뺏김</text>
+      <text x="330" y="143.0" text-anchor="middle" font-size="9.6" font-weight="700" fill="#6F7F8D">유지</text>
+      <text x="330" y="180" text-anchor="middle" font-size="10" fill="#4a4a4a">깊게 가로지르면 넓은 쪽이 뺏긴다</text>
+      <text x="330" y="193" text-anchor="middle" font-size="9" fill="#7a7a7a">같은 규칙인데 넓이가 뒤집힌다</text>
+      <circle cx="550" cy="110" r="40" fill="#E9EEF3"/>
+      <path d="M512.5,96 L511.1,100.6 L510.3,105.2 L510,110 L510.3,114.8 L511.1,119.4 L512.5,124 L587.5,124 L588.9,119.4 L589.7,114.8 L590,110 L589.7,105.2 L588.9,100.6 L587.5,96 Z" fill="#F2DFB6" stroke="#B4700C" stroke-width="1.3"/>
+      <path d="M587.5,96 L588.8,100.1 L589.6,104.3 L590,108.6 L589.9,112.8 L589.4,117.1 L588.4,121.3 L587,125.3 L585.1,129.2 L582.9,132.8 L580.2,136.2 L577.3,139.3 L574,142 L570.4,144.4 L566.6,146.4 L562.6,148 L558.5,149.1 L554.3,149.8 L550,150 L545.7,149.8 L541.5,149.1 L537.4,148 L533.4,146.4 L529.6,144.4 L526,142 L522.7,139.3 L519.8,136.2 L517.1,132.8 L514.9,129.2 L513,125.3 L511.6,121.3 L510.6,117.1 L510.1,112.8 L510,108.6 L510.4,104.3 L511.2,100.1 L512.5,96" fill="none" stroke="#6F7F8D" stroke-width="1.4"/>
+      <path d="M512.5,124 L511.2,119.9 L510.4,115.7 L510,111.4 L510.1,107.2 L510.6,102.9 L511.6,98.7 L513,94.7 L514.9,90.8 L517.1,87.2 L519.8,83.8 L522.7,80.7 L526,78 L529.6,75.6 L533.4,73.6 L537.4,72 L541.5,70.9 L545.7,70.2 L550,70 L554.3,70.2 L558.5,70.9 L562.6,72 L566.6,73.6 L570.4,75.6 L574,78 L577.3,80.7 L580.2,83.8 L582.9,87.2 L585.1,90.8 L587,94.7 L588.4,98.7 L589.4,102.9 L589.9,107.2 L590,111.4 L589.6,115.7 L588.8,119.9 L587.5,124" fill="none" stroke="#6F7F8D" stroke-width="1.4"/>
+      <line x1="488" y1="96" x2="612" y2="96" stroke="#B4700C" stroke-width="2.2" stroke-linecap="round"/>
+      <line x1="488" y1="124" x2="612" y2="124" stroke="#B4700C" stroke-width="2.2" stroke-linecap="round"/>
+      <text x="550" y="114" text-anchor="middle" font-size="9.6" font-weight="700" fill="#B4700C">뺏김</text>
+      <text x="484" y="99" text-anchor="end" font-size="9" fill="#B4700C">내 궤적</text>
+      <text x="550" y="87.0" text-anchor="middle" font-size="9.2" font-weight="700" fill="#6F7F8D">유지</text>
+      <text x="550" y="141.0" text-anchor="middle" font-size="9.2" font-weight="700" fill="#6F7F8D">유지</text>
+      <text x="550" y="180" text-anchor="middle" font-size="10" fill="#4a4a4a">관통하면 상대 영역이 갈라진다</text>
+      <text x="550" y="193" text-anchor="middle" font-size="9" fill="#7a7a7a">상대에게 조각 2개가 남는다</text>
+      </svg>
+    <div class="cols" style="margin-top:5px">
+      <div>
+        <p style="font-size:9pt">상대 영역을 가로질러 지나가면 그 영역이
+        <b>내 궤적을 경계로 잘립니다.</b> 가져오는 것은 <b>내가 감싼 쪽</b>이고,
+        그 조각은 좁을 수도 넓을 수도 있습니다. ①의 넓이 규칙은 여기서 쓸 수 없습니다.</p>
+        <p style="font-size:9pt">한 궤적이 상대 영역을 여러 번 드나들면 상대에게는
+        <b>조각 여러 개가 남습니다.</b> 그래서 영역을 폴리곤 하나가 아니라
+        <code>List&lt;List&lt;Vector3&gt;&gt;</code> <b>조각 목록</b>으로 표현합니다.</p>
+      </div>
+      <div>
+        <pre style="font-size:7.6pt"><span class="k">foreach</span> (<span class="k">var</span> cut <span class="k">in</span> cuts)      <span class="c">// 다 자르고</span>
+    pieces = CutAll(pieces, cut);  <span class="c">// 둘 다 보관</span>
+<span class="k">foreach</span> (<span class="k">var</span> p <span class="k">in</span> pieces)     <span class="c">// 판정은 마지막에</span>
+    <span class="k">if</span> (!IsTakenBy(p, <span class="k">this</span>, cutPoints))
+        survived.Add(p);</pre>
+        <p style="font-size:9pt; margin-top:5px">자를 때는 어느 쪽도 버리지 않고,
+        전부 자른 뒤 <b>조각마다 소유권을 한 번씩</b> 판정합니다.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="note pin">
+    <b>출처 표기</b> — 포함 판정(Ray casting) · 넓이(Shoelace) · 삼각분할(Ear clipping)은
+    <b>공개 구현을 가져다 쓰고 코드 주석에 출처를 남겼습니다.</b> 제가 설계한 것은 이를 조합한 <b>영역 표현과 확장 · 침탈 규칙</b>입니다.
+  </div>
+
+  <div class="folio"><span>06 · Rainbow War — 영역 확장·침탈 알고리즘</span><span>10</span></div>
+ </div>
+</section>
+
+
+<!-- ================= 카드 07 Rainbow War 멀티플레이 ================= -->
+<section class="page airy">
+
+ <div class="page-inner">
+  <div class="card-head">
+    <span class="card-num">07</span>
+    <h2 class="card-title">Rainbow War — Photon 멀티플레이 동기화</h2>
+    <span class="card-tag">Photon PUN2 · 호스트 권위 · RPC</span>
+  </div>
+
+  <p class="lede">
+    Photon PUN2(Photon Cloud) 기반입니다. 방·팀 매칭과 인게임 상태 동기화를 담당했고,
+    실제로 여러 대를 붙여 돌리면서 겪은 <b>두 가지 문제</b>를 해결했습니다.
   </p>
 
   <div class="figs3" style="margin-bottom:11px">
-    <figure><img src="assets/print/땅따먹기 장면.jpg" alt="Rainbow War 플레이">
-      <figcaption>Rainbow War — 선을 그어 영역을 확장한다. 긋는 동안은 무방비</figcaption></figure>
-    <figure><img src="assets/print/구미호 전투 컷씬.jpg" alt="설화 구미호 보스 컷씬">
-      <figcaption>설화 — 보스전 진입 컷씬. 마을·상점·던전을 오가는 구조</figcaption></figure>
-    <figure><img src="assets/print/플레이 화면 1.jpg" alt="Match and Mist 플레이 화면">
-      <figcaption>Match &amp; Mist — 성냥불로 안개를 밝히며 좀비를 피한다</figcaption></figure>
+    <figure><img src="assets/print/rainbowwar 로비.jpg" alt="Rainbow War 로비" style="height:30mm; object-fit:cover">
+      <figcaption>로비 — 마스터 서버 접속 상태</figcaption></figure>
+    <figure><img src="assets/print/팀 선택 화면.jpg" alt="Rainbow War 룸 팀 선택" style="height:30mm; object-fit:cover">
+      <figcaption>룸 — 팀 배정과 색 선택</figcaption></figure>
+    <figure><img src="assets/print/죽음 장면.jpg" alt="Rainbow War 처치 및 리스폰" style="height:30mm; object-fit:cover">
+      <figcaption>처치 · 리스폰 — 점수는 마스터가 계산</figcaption></figure>
+  </div>
+
+  <div class="block" style="width:140mm; margin:0 auto 12px">
+    <svg viewBox="0 0 336 118" style="width:100%; height:auto" role="img" aria-label="씬 파이프라인">
+      <defs><marker id="rw-ah4" markerWidth="9" markerHeight="9" refX="7.5" refY="3.2" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L7.5,3.2 L0,6.4 z" fill="#B4700C"/></marker></defs>
+      <rect x="6" y="16" width="100" height="52" rx="5" fill="#FDF6E7" stroke="#B4700C" stroke-width="1.4"/>
+      <text x="56" y="38" text-anchor="middle" font-size="12" font-weight="700" fill="#1a1a1a">Lobby</text>
+      <rect x="118" y="16" width="100" height="52" rx="5" fill="#FDF6E7" stroke="#B4700C" stroke-width="1.4"/>
+      <text x="168" y="38" text-anchor="middle" font-size="12" font-weight="700" fill="#1a1a1a">Room</text>
+      <rect x="230" y="16" width="100" height="52" rx="5" fill="#FDF6E7" stroke="#B4700C" stroke-width="1.4"/>
+      <text x="280" y="38" text-anchor="middle" font-size="12" font-weight="700" fill="#1a1a1a">Playing</text>
+      <line x1="110" y1="42" x2="118" y2="42" stroke="#B4700C" stroke-width="1.4" marker-end="url(#rw-ah4)"/>
+      <line x1="222" y1="42" x2="230" y2="42" stroke="#B4700C" stroke-width="1.4" marker-end="url(#rw-ah4)"/>
+      <text x="56" y="85" text-anchor="middle" font-size="9.2" fill="#4a4a4a">랜덤 입장 → 실패 시 방 생성</text>
+      <text x="168" y="85" text-anchor="middle" font-size="9.2" fill="#4a4a4a">팀 · 색 검증을 통과해야 시작</text>
+      <text x="280" y="85" text-anchor="middle" font-size="9.2" fill="#4a4a4a">마스터 기준 씬 자동 동기화</text>
+      <text x="168" y="107" text-anchor="middle" font-size="9" fill="#7a7a7a">시작과 동시에 IsOpen = false 로 난입 차단</text>
+      </svg>
   </div>
 
   <div class="cols">
     <div>
       <div class="block">
-        <div class="block-label">Rainbow War · 개발 리더 · 7인 · 2021.04 ~ 2022.04</div>
-        <p>실시간 멀티플레이 영역 점령 TPS. 아주대 교내 동아리 시연회에 출품해 현장에서 시연했습니다.</p>
-        <ul>
-          <li>Photon RPC 기반 이동·사격·영역 갱신 동기화. 클라이언트마다 영역 계산이 어긋나는
-              문제를 <b>Master-Slave 구조</b>로 정리해 판정 기준을 한 곳으로 수렴</li>
-          <li>플레이어가 그린 임의 다각형 영역을 <b>Ear Clipping 삼각분할</b>로 메시화</li>
-          <li>7인 팀의 개발 리더로 작업 분배와 통합 담당</li>
-        </ul>
+        <div class="block-label">구현 내용 — Photon PUN2를 어디에 썼는가</div>
+        <table style="font-size:8.6pt">
+          <colgroup><col style="width:44%"><col></colgroup>
+          <tbody>
+            <tr><td><code>JoinRandomRoom</code> · <code>CreateRoom</code></td>
+              <td>로비 매치메이킹. 랜덤 입장에 실패하면 방을 만든다</td></tr>
+            <tr><td><code>PhotonTeamsManager</code><br><code>CustomProperties</code></td>
+              <td>룸의 팀 배정과 색 선택 상태를 참가자 전체에 공유</td></tr>
+            <tr><td><code>AutomaticallySyncScene</code></td>
+              <td>마스터 기준으로 <code>Playing</code> 씬을 동시에 전환</td></tr>
+            <tr><td><code>RPC</code><br>(<code>MasterClient</code> · <code>Others</code>)</td>
+              <td>체력 · 점수 · 킬 크레딧을 마스터에서만 계산하고 결과만 브로드캐스트</td></tr>
+            <tr><td><code>PhotonNetwork.Time</code></td>
+              <td>방 전체가 공유하는 서버 시계. 제한 시간 계산의 기준</td></tr>
+          </tbody>
+        </table>
       </div>
-
       <div class="block">
-        <div class="block-label">설화 · 개발 전담 · 4인 · 2022.04 ~ 2022.12</div>
-        <p>조선 배경 횡스크롤 턴제 로그라이크. 소학회 내 시연.</p>
-        <ul>
-          <li>속도 순으로 턴이 도는 <b>파티 단위 턴제 전투</b>, 캐릭터별 고유 기술과 상태이상 구현</li>
-          <li>캐릭터·스토리·이벤트를 <b>JSON 데이터로 분리</b>해, 기획자가 콘텐츠를 추가할 때
-              코드를 고치지 않아도 되는 구조를 만듦</li>
-          <li>전투 이벤트 전파에 Observer, 생성에 Factory 패턴을 적용해
-              8개월간 늘어나는 요구사항을 감당</li>
-        </ul>
+        <div class="block-label">영역 동기화 — 계산은 로컬, 결과만 이벤트로</div>
+        <p style="font-size:9.2pt">폴리곤 절단은 무거운 연산이라 매 프레임 스트리밍할 수 없습니다.
+        <b>소유 클라이언트에서만 계산하고, 확정된 정점 배열만 폐쇄 · 침탈 시점에</b> 보냅니다.</p>
       </div>
     </div>
 
     <div>
+      <div class="block-label" style="margin-bottom:5px">겪은 문제와 해결</div>
       <div class="block">
-        <div class="block-label">Match &amp; Mist · Global Game Jam 2022 · 3일</div>
-        <ul>
-          <li>게임잼 주제 <b>‘이중성’</b>에 맞춰, 아이템으로 <b>도망과 추격이 뒤바뀌는 순간</b>을
-              핵심 재미로 잡음</li>
-          <li>이동 속도가 빠를수록 소음이 커지고 좀비가 그 소음을 따라오는 규칙 —
-              <b>“빨리 가고 싶은데 그러면 들킨다”</b>는 긴장을 만듦</li>
-          <li>3일 안에 플레이 가능한 빌드를 완성해 제출</li>
-        </ul>
+        <div class="block-label">① 클라이언트마다 시작 시점이 어긋난다</div>
+        <p style="font-size:9.2pt"><b>문제</b> — 기기와 회선 차이로 씬 로딩 완료 시각이 다릅니다.
+        각자 타이머를 돌리면 60초 제한 시간이 서로 다른 시점에 끝나 승패 판정이 어긋납니다.</p>
+        <p style="font-size:9.2pt"><b>해결</b> — 마스터가 <b>서버 시계의 원점을 룸 프로퍼티에 기록</b>하고
+        나머지가 그 값을 읽어 같은 경과 시간을 계산합니다. RPC와 달리 룸 프로퍼티는
+        <b>상태로 남아 늦게 읽어도 유효</b>합니다. 여기에 오브젝트 생성 완료 배리어를 더해
+        초기화 순서도 보장했습니다.</p>
       </div>
-
       <div class="block">
-        <div class="block-label">여기서 배운 것</div>
-        <p>Rainbow War의 동기화 버그는 재현 방법이 “여러 명이 모여서 해보기”뿐이었습니다.
-        코드상으로는 맞는데 네 명이 동시에 붙으면 영역 계산이 어긋나는 버그를,
-        사람을 모아 반복 재현하며 잡았습니다. <b>재현할 수 없으면 고칠 수 없다</b>는 걸
-        이때 체감했고, 짧은 게임잼에서는 핵심 플레이 경험부터 세워야 한다는 것도 배웠습니다.</p>
+        <div class="block-label">② 늦게 들어온 클라이언트가 남의 영역을 모른다</div>
+        <p style="font-size:9.2pt"><b>문제</b> — 영역은 변경 시점에만 브로드캐스트되므로,
+        나중에 들어온 클라이언트는 그 전의 이벤트를 전부 놓칩니다.</p>
+        <p style="font-size:9.2pt"><b>해결</b> — <b>진입한 쪽이 기존 참가자에게 최신 영역을 역요청(pull)</b>하도록 했습니다.
+        <code>OthersBuffered</code>로 push하면 게임 내내 모든 변경 이력이 버퍼에 쌓입니다.</p>
       </div>
     </div>
-  </div>
-
-  <div class="figs3" style="margin-top:11px">
-    <figure><img src="assets/print/파란색 영역 땅따먹기 장면.jpg" alt="Rainbow War 영역 확장">
-      <figcaption>Rainbow War — Ear Clipping으로 삼각분할해 생성한 영역 메시</figcaption></figure>
-    <figure><img src="assets/print/마을.jpg" alt="설화 마을">
-      <figcaption>설화 — 던전 출발 전 마을에서 상점·게시판으로 준비를 갖춘다</figcaption></figure>
-    <figure><img src="assets/print/플레이 화면 2.jpg" alt="Match and Mist 플레이">
-      <figcaption>Match &amp; Mist — 소음을 따라오는 좀비</figcaption></figure>
   </div>
 
   <div class="note pin">
-    <b>세 프로젝트가 기억결로 이어진 지점</b> — 설화의 JSON 데이터 분리는 기억결에서
-    카드·몬스터·상태이상을 CSV로 저작하고 에디터 임포터로 ScriptableObject를 생성하는
-    데이터 파이프라인으로 이어졌습니다. Match &amp; Mist의 제한 시야는 기억결 암시야 설계의 출발점이었고,
-    Rainbow War에서 겪은 재현 불가능한 버그가 자동화 테스트를 붙이게 된 계기였습니다.
+    <b>지금이라면 고칠 것</b> — 점수판을 <code>Update</code>에서 매 프레임 전 클라이언트에 RPC로 보내고 있습니다
+    (당시에도 비효율을 알고 코드에 TODO를 남겨뒀습니다). 영역도 조각 전체를 보내므로 정점 수에 비례해 페이로드가 늘어납니다.
+    당시에는 <b>전송량과 프레임 시간을 측정하지 않았습니다.</b>
   </div>
 
-  <div class="folio"><span>06 · 이전 프로젝트</span><span>09</span></div>
+  <div class="folio"><span>07 · Rainbow War — Photon 멀티플레이 동기화</span><span>11</span></div>
  </div>
 </section>
+<section class="page airy">
 
-
-<!-- ================= p10 · 그 외 + 프로필 ================= -->
-<section class="page">
  <div class="page-inner">
   <div class="card-head">
-    <span class="card-num">07</span>
-    <h2 class="card-title">그 외 경험 · Profile</h2>
+    <span class="card-num">08</span>
+    <h2 class="card-title">기타 프로젝트</h2>
+    <span class="card-tag">2022</span>
   </div>
 
-  <div style="margin-top:12px">
-    <h3 class="h-sec" style="font-size:10pt">인턴 · 영상 분석 AI</h3>
-    <div class="cols">
+  <div class="block" style="margin-bottom:13px">
+    <div class="case-head">
+      <span class="case-title">설화 — 조선 배경 횡스크롤 턴제 로그라이크</span>
+      <span class="case-gain">개발 전담 · 4인 · 2022.04 ~ 2022.12</span>
+    </div>
+    <div class="figs2" style="margin:7px 0 8px; gap:10px">
+    <figure><img src="assets/print/마을.jpg" alt="설화 마을" style="height:56mm; object-fit:cover">
+      <figcaption>마을 — 상점 · 게시판 등 던전 밖 진행 흐름과 UI를 구현했다</figcaption></figure>
+    <figure><img src="assets/print/구미호 전투 컷씬.jpg" alt="설화 보스전 컷씬" style="height:56mm; object-fit:cover">
+      <figcaption>보스전 진입 컷씬 — 마을 · 상점 · 던전을 오가는 구조</figcaption></figure>
+    </div>
+    <div class="cols" style="gap:0 10px">
       <div>
-        <div class="proj-top" style="margin-bottom:3px">
-          <span class="proj-name" style="font-size:10pt">(주)베스텔라랩 · 영상 분석 AI 부서</span>
-          <span class="proj-when">2025.09 ~ 2025.12</span>
-        </div>
-        <p style="font-size:9.2pt; color:var(--ink-2)">
-          주차장 CCTV 환경에서 차량 번호판을 인식해 차량 위치를 제공하는 서비스의
-          LPR(번호판 인식) 모듈을 담당했습니다. 회전·왜곡·원근 변환 증강으로 실제 CCTV
-          각도 문제에 대응하고, 모델을 파인튜닝했습니다.
-        </p>
+        <ul style="font-size:9.2pt">
+          <li>속도 순으로 턴이 도는 <b>파티 단위 턴제 전투</b>, 캐릭터별 고유 기술과 상태이상 구현</li>
+          <li>캐릭터 · 스토리 · 이벤트를 <b>JSON 데이터로 분리</b>해 콘텐츠 추가 시 코드를 고치지 않아도 되게 구성</li>
+          <li>전투 이벤트 전파에 <b>Observer</b>, 생성에 <b>Factory</b> 패턴을 적용해 8개월간 늘어나는 요구사항에 대응</li>
+        </ul>
       </div>
       <div>
-        <table>
-          <tbody>
-            <tr><td>인식 정확도</td><td class="num">약 97~97.9%</td></tr>
-            <tr><td>추론 시간 (ONNX 변환 + FP16 양자화)</td><td class="num">2.59s → <b class="gain">1.18s</b></td></tr>
-          </tbody>
-        </table>
-        <p style="font-size:8.8pt; color:var(--ink-2); margin-top:5px">
-          도메인은 다르지만 <b>계측하고 병목을 특정해 개선하고 다시 재는</b> 방식은
-          기억결의 성능 작업(04)과 같습니다.
-        </p>
+        <a class="trailer" style="margin-top:0" href="https://youtu.be/swJEf2gjw50">
+          <img class="trailer-qr" src="assets/qr-seolhwa.svg" alt="설화 플레이 영상 QR 코드" style="width:14mm; height:14mm">
+          <span>
+            <span class="trailer-label">설화 플레이 영상</span><br>
+            <span class="trailer-url">youtu.be/swJEf2gjw50</span>
+          </span>
+        </a>
       </div>
     </div>
   </div>
 
-  <div style="margin-top:16px">
-    <h3 class="h-sec" style="font-size:10pt">Profile</h3>
-    <div class="cols">
+  <div class="block" style="margin-bottom:13px">
+    <div class="case-head">
+      <span class="case-title">Match &amp; Mist — 제한 시야 추격 게임</span>
+      <span class="case-gain">Global Game Jam 2022 · 3일</span>
+    </div>
+    <div class="figs2" style="margin:7px 0 8px; gap:10px">
+    <figure><img src="assets/print/플레이 화면 1.jpg" alt="Match and Mist 플레이 화면 1" style="height:56mm; object-fit:cover">
+      <figcaption>성냥불로 안개를 밝히며 좀비를 피한다</figcaption></figure>
+    <figure><img src="assets/print/플레이 화면 2.jpg" alt="Match and Mist 플레이 화면 2" style="height:56mm; object-fit:cover">
+      <figcaption>이동 속도가 소음이 되고, 좀비가 그 소음을 추적한다</figcaption></figure>
+    </div>
+    <div class="cols" style="gap:0 10px">
       <div>
-        <div class="block">
-          <div class="block-label">Education</div>
-          <dl class="kv">
-            <dt>2020.03 ~ 2026.02</dt><dd>아주대학교 소프트웨어학과 졸업</dd>
-            <dt>학점</dt><dd>4.06 / 4.5 (전공 3.98 / 4.5)</dd>
-          </dl>
-        </div>
-        <div class="block">
-          <div class="block-label">Certification</div>
-          <dl class="kv">
-            <dt>2025.09</dt><dd>정보처리기사</dd>
-            <dt>2025.06</dt><dd>ADsP 데이터분석 준전문가</dd>
-          </dl>
-        </div>
+        <ul style="font-size:9.2pt">
+          <li>주제 <b>‘이중성’</b>에 맞춰 아이템으로 <b>도망과 추격이 뒤바뀌는</b> 규칙을 핵심으로 설계</li>
+          <li>이동 속도가 소음이 되고 좀비가 그 소음을 추적하는 <b>제한 시야 추격</b> 구현</li>
+          <li>3일 안에 플레이 가능한 빌드를 완성해 제출</li>
+        </ul>
       </div>
       <div>
-        <div class="block">
-          <div class="block-label">Activities</div>
-          <dl class="kv">
-            <dt>2026</dt><dd>제1회 서울 플레이업 AI 게임 챌린지 — 기억결, 상위 8팀</dd>
-            <dt>2022</dt><dd>게임 개발 소학회 TML — 설화, 개발 전담</dd>
-            <dt>2022</dt><dd>Global Game Jam 2022 — Match &amp; Mist</dd>
-            <dt>2021</dt><dd>게임 개발 소학회 브레인스톰 — Rainbow War, 개발 리더</dd>
-          </dl>
-        </div>
-        <div class="block">
-          <div class="block-label">Links</div>
-          <dl class="kv">
-            <dt>GitHub</dt><dd>github.com/binnini</dd>
-            <dt>Portfolio</dt><dd>binnini.github.io/portfolio</dd>
-            <dt>기억결 영상</dt><dd>트레일러 youtu.be/D9CC7_xlRyA</dd>
-          </dl>
-        </div>
+        <a class="trailer" style="margin-top:0" href="https://drive.google.com/file/d/1VszmacooxUqKX8ptIuRXxg7rhBjFIJ0L/view">
+          <img class="trailer-qr" src="assets/qr-matchmist.svg" alt="Match &amp; Mist 플레이 영상 QR 코드" style="width:18mm; height:18mm">
+          <span>
+            <span class="trailer-label">Match &amp; Mist 플레이 영상</span><br>
+            <span class="trailer-url" style="font-size:8.2pt">drive.google.com/file/d/<br>1VszmacooxUqKX8ptIuRXxg7rhBjFIJ0L</span>
+          </span>
+        </a>
       </div>
     </div>
   </div>
 
-  <div style="margin-top:16px">
-    <h3 class="h-sec" style="font-size:10pt">일하는 방식</h3>
-    <div class="cols">
-      <div>
-        <div class="block">
-          <div class="block-label">기록으로 남기고 강제한다</div>
-          <p style="font-size:9pt">3인 팀에서 개발을 혼자 맡았고 기획이 계속 바뀌었습니다.
-          “저번에 왜 이렇게 정했더라”를 반복하지 않으려고 결정을 배경·대안과 함께 기록하기 시작했고,
-          시스템 스펙의 각 조항에 담당 테스트를 붙여 <b>문서와 코드가 어긋나면 테스트가 깨지도록</b> 했습니다.</p>
-        </div>
-        <div class="block">
-          <div class="block-label">AI 도구를 쓰는 관점</div>
-          <p style="font-size:9pt">AI 활용의 상한은 <b>코드베이스 구조가 정한다</b>고 봤습니다.
-          게임 규칙을 순수 C#으로 분리해 CLI에서 테스트가 도는 영역을 만들자,
-          에이전트가 고치고 → 돌리고 → 다시 고치는 <b>검증 루프를 스스로 닫을 수 있게</b> 됐습니다.
-          규칙은 프롬프트로 지시하는 대신 asmdef 제약으로 컴파일러가 강제하게 했습니다.</p>
-        </div>
-      </div>
-      <div>
-        <div class="block">
-          <div class="block-label">덜어낸 판단도 기록했다</div>
-          <ul style="font-size:9pt">
-            <li>시야 차폐(line-of-sight)는 <b>구현하지 않기로 결정</b>하고 테스트로 잠갔습니다 —
-                시야는 순수 거리라는 계약을 고정</li>
-            <li>어셈블리를 더 잘게 쪼갤지 검토했다가 <b>분리하지 않기로 종결</b></li>
-            <li>Mesh 재사용 풀은 넣었다가 <b>효과가 없어 되돌렸습니다</b></li>
-          </ul>
-          <p style="font-size:9pt; margin-top:5px">공모전 1개월 구간에는 기능을 우선해서 밀었고,
-          개발이 계속 이어지게 되자 계측하고 분해하고 테스트를 채웠습니다.
-          <b>급할 땐 빠르게 밀고, 오래 갈 프로젝트가 되면 갚는다</b>는 기준으로 판단했습니다.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="result pin">
-    <b>앞으로</b> — 기억결은 지금도 개발 중이고 2026 GES 전시를 준비하고 있습니다.
-    남은 과제도 알고 있습니다. 측정이 아직 에디터 플레이 모드에 머물러 있어
-    <b>실기기 프로파일링</b>이 필요하고, <code>CombatState</code> 분해와
-    <b>Addressables 기반 리소스 관리</b>는 아직 손대지 못했습니다.
-    다음에 배우고 싶은 것도 그쪽입니다.
-  </div>
-
-  <div class="folio"><span>Profile</span><span>10</span></div>
+  <div class="folio"><span>08 · 기타 프로젝트</span><span>12</span></div>
  </div>
 </section>
 
