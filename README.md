@@ -4,8 +4,8 @@
 턴제 덱빌딩 로그라이크 **기억결(MemoryStone)** 의 클라이언트를 전담 개발하고 있습니다.
 
 ## 📄 Documents
-- **[포트폴리오 (2026)](https://binnini.github.io/portfolio/portfolio-2026.html)** · [PDF](portfolio-2026.pdf)
-- **[이력서 (2026)](https://binnini.github.io/portfolio/resume-2026.html)** · [PDF](resume-2026.pdf)
+- **[포트폴리오 (2026)](https://binnini.github.io/portfolio/portfolio-2026.html)**
+- **[이력서 (2026)](https://binnini.github.io/portfolio/resume-2026.html)**
 - [게임 소개 페이지](https://binnini.github.io/portfolio/)
 
 ## 🎮 Projects
